@@ -1,13 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * Clase OrdenTrasladoDAO.java 
  */
 package org.itson.daos;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.itson.dominio.OrdenTraslado;
+import org.itson.registros.Interface.IConexionBD;
 
 /**
  * 
@@ -18,27 +21,38 @@ import org.itson.dominio.OrdenTraslado;
  * Ángel de Jesús Valenzuela García
  */
 public class OrdenTrasladoDAO extends DAOGeneral<OrdenTraslado>{
-
-
-
-    @Override
-    public OrdenTraslado consultar(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private final MongoDatabase BASE_DATOS;
+    private final String NOMBRE_COLECCION = "ordenes_traslados";
+    public OrdenTrasladoDAO(IConexionBD conexionBD){
+        BASE_DATOS=conexionBD.getBaseDatos();
     }
 
     @Override
-    public List<OrdenTraslado> consultarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+public OrdenTraslado consultar(ObjectId id) {
+    MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
+    return coleccion.find(eq("_id", id)).first();
+}
 
-    @Override
-    public OrdenTraslado agregar(OrdenTraslado entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
-    @Override
-    public OrdenTraslado actualizar(OrdenTraslado entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+@Override
+public List<OrdenTraslado> consultarTodos() {
+    MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
+    return coleccion.find().into(new ArrayList<>());
+}
+
+@Override
+public OrdenTraslado agregar(OrdenTraslado entidad) {
+    MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
+    coleccion.insertOne(entidad);
+    return entidad;
+}
+
+@Override
+public OrdenTraslado actualizar(OrdenTraslado entidad) {
+    MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
+    coleccion.replaceOne(eq("_id", entidad.getId()), entidad);
+    return entidad;
+}
     
 }
+

@@ -118,8 +118,8 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         lblCantidadTrasladar.setForeground(new java.awt.Color(255, 255, 255));
         lblCantidadTrasladar.setText("Cantidad a trasladar");
 
-        cbxResiduos.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         cbxResiduos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxResiduos.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
 
         txtCantidad.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
 
@@ -127,8 +127,8 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         lblUnidadDeMedida.setForeground(new java.awt.Color(255, 255, 255));
         lblUnidadDeMedida.setText("Unidad de medida");
 
-        cbxUnidad.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         cbxUnidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilogramos", "Litros" }));
+        cbxUnidad.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout jplFondo1Layout = new javax.swing.GroupLayout(jplFondo1);
         jplFondo1.setLayout(jplFondo1Layout);
