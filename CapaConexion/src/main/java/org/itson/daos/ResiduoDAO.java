@@ -28,18 +28,9 @@ public class ResiduoDAO extends DAOGeneral<Residuo>{
     public ResiduoDAO(ConexionBD CONEXION) {
         this.BASE_DATOS = CONEXION.getBaseDatos();
     }
-    @Override
-    protected MongoCollection<Residuo> getColeccion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
     public Residuo consultar(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Residuo consultar(Residuo parametros) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

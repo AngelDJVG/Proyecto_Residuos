@@ -19,18 +19,10 @@ import org.itson.dominio.OrdenTraslado;
  */
 public class OrdenTrasladoDAO extends DAOGeneral<OrdenTraslado>{
 
-    @Override
-    protected MongoCollection<OrdenTraslado> getColeccion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
     @Override
     public OrdenTraslado consultar(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public OrdenTraslado consultar(OrdenTraslado parametros) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

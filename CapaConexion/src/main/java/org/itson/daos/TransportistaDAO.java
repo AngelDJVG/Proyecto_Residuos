@@ -27,10 +27,6 @@ public class TransportistaDAO extends DAOGeneral<Transportista>{
     public TransportistaDAO(ConexionBD CONEXION) {
         this.BASE_DATOS = CONEXION.getBaseDatos();
     }
-    @Override
-    protected MongoCollection<Transportista> getColeccion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
     public Transportista agregar(Transportista transportista) {
@@ -67,10 +63,6 @@ public class TransportistaDAO extends DAOGeneral<Transportista>{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public Transportista consultar(Transportista parametros) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
     public List<Transportista> consultarTodos() {

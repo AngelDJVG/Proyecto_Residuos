@@ -19,12 +19,7 @@ import org.bson.types.ObjectId;
  */
 public abstract class DAOGeneral<T> {
     
-    /**
-     * Metodo para obtener la coleccion
-     * @return regresa una coleccion.
-     */
-    protected abstract MongoCollection<T> getColeccion();
-
+    
     /**
      * Metodo para agregar
      * @param entidad entidad a registrar segun su tipo.
@@ -45,12 +40,6 @@ public abstract class DAOGeneral<T> {
      * @return objeto consultado
      */
     public abstract T consultar(ObjectId id);
-    /**
-     * Metodo para consultar
-     * @param parametros id por el cual consultar.
-     * @return objeto consultado
-     */
-    public abstract T consultar(T parametros);
 
     /**
      * Metodo para consultar todos.
