@@ -1,4 +1,6 @@
-
+/**
+ * Clase ConstituyenteQuimico.java creado el 13/05/2023.
+ */
 package org.itson.dominio;
 
 import java.util.Objects;
@@ -6,8 +8,14 @@ import org.bson.types.ObjectId;
 
 /**
  * Clase de dominio de constituyente quimico.
- * @author Luis Ayón, Mario Díaz, Gabriel Mancinas, Ángel Valenzuela
+ * 
+ * @author Equipo 3 
+ * Luis Pablo Ayón Figueroa
+ * Mario Díaz Padilla
+ * Gabriel Alberto Mancinas Cota
+ * Ángel de Jesús Valenzuela García
  */
+ 
 public class ConstituyenteQuimico {
     
     private ObjectId id;

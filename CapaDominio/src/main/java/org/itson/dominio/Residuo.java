@@ -1,4 +1,6 @@
-
+/**
+ * Clase Residuo.java creado el 13/05/2023.
+ */
 package org.itson.dominio;
 
 import java.util.List;
@@ -7,12 +9,17 @@ import org.bson.types.ObjectId;
 
 /**
  * Clase de dominio de residuo.
- * @author Luis Ayón, Mario Díaz, Gabriel Mancinas, Ángel Valenzuela
+ * @author Equipo 3 
+ * Luis Pablo Ayón Figueroa
+ * Mario Díaz Padilla
+ * Gabriel Alberto Mancinas Cota
+ * Ángel de Jesús Valenzuela García
  */
 public class Residuo {
     
     private ObjectId id;
     private String nombre;
+    private ResiduoUnidadMedida unidadMedida;
     private String lote;
     private List<ConstituyenteQuimico> constituyentesQuimicos;
     
@@ -110,6 +117,20 @@ public class Residuo {
      */
     public void setConstituyentesQuimicos(List<ConstituyenteQuimico> constituyentesQuimicos) {
         this.constituyentesQuimicos = constituyentesQuimicos;
+    }
+    /**
+     * Método get que regresa la unidad de medida del residuo.
+     * @return unidad de medida.
+     */
+    public ResiduoUnidadMedida getUnidadMedida() {
+        return unidadMedida;
+    }
+    /**
+     * Método set que asigna la unidad de medida del residuo.
+     * @param unidadMedida unidad de medida.
+     */
+    public void setUnidadMedida(ResiduoUnidadMedida unidadMedida) {
+        this.unidadMedida = unidadMedida;
     }
     
     /**
