@@ -46,12 +46,14 @@ public class TransportistaDAO extends DAOGeneral<Transportista>{
            Transportista transportista2 = new Transportista("Adrian Macias", "adrian.macias@itson.edu.mx");
            Transportista transportista3 = new Transportista("Angel Valenzuela", "angel.valenzuela233109@potros.itson.edu.mx");
            Transportista transportista4 = new Transportista("Gabriel Mancinas", "gabriel.mancinas233410@potros.itson.edu.mx");
+           Transportista transportista5 = new Transportista("Gibran Duran", "christian.duran@potros.itson.edu.mx ");
            List<Transportista> transportistas = new ArrayList<>();
            transportistas.add(transportista);
            transportistas.add(transportista1);
            transportistas.add(transportista2);
            transportistas.add(transportista3);
            transportistas.add(transportista4);
+           transportistas.add(transportista5);
            collection.insertMany(transportistas);
     }
 
@@ -73,10 +75,10 @@ public class TransportistaDAO extends DAOGeneral<Transportista>{
     @Override
     public List<Transportista> consultarTodos() {
         MongoCollection<Transportista> collection = BASE_DATOS.getCollection(NOMBRE_COLECCION,Transportista.class);
-        List<Transportista> restaurantes = new LinkedList<>();
-        collection.find().into(restaurantes);
+        List<Transportista> transportistas = new LinkedList<>();
+        collection.find().into(transportistas);
         
-        return restaurantes;
+        return transportistas;
     }
 
 }
