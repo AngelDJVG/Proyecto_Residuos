@@ -13,8 +13,12 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
 /**
- *
- * @author lv1013
+ * 
+ * @author Equipo 3 
+ * Luis Pablo Ayón Figueroa
+ * Mario Díaz Padilla
+ * Gabriel Alberto Mancinas Cota
+ * Ángel de Jesús Valenzuela García
  */
 public class Conexion {
     public  MongoDatabase base()
@@ -25,7 +29,7 @@ public class Conexion {
         .codecRegistry(pojoCodecRegistry)
         .build();
         com.mongodb.client.MongoClient conexion = MongoClients.create(settings);
-         MongoDatabase database = conexion.getDatabase("RestaurantesBD_10am");
+         MongoDatabase database = conexion.getDatabase("ResiduosPeligrosos");
          return database;
     }
 }
