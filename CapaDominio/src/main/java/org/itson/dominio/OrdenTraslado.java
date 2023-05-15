@@ -20,11 +20,13 @@ public class OrdenTraslado {
     
     private ObjectId id;
     private String tratamiento;
-    private Residuo residuo;
-    private Destino destino;
     private Calendar fecha_creacion;
     private Calendar fecha_limite;
     private int cantidad;
+    private ObjectId idResiduo;
+    private ObjectId idDestino;
+    private ObjectId idProductor;
+    private int precio;
 
     /**
      * Método constructor por defecto.
@@ -34,18 +36,22 @@ public class OrdenTraslado {
     }
 
     /**
+     * Método constructor que inicializa todos los atributos.
+     * @param id ID de la orden de traslado.
+     */
+    public OrdenTraslado(ObjectId id) {
+        this.id = id;
+    }
+
+    /**
      * Método constructor que inicializa el tratamiento, residuo, destino, fecha de creación, fecha limite y la cantidad.
      * @param tratamiento Tratamiento de la orden de traslado.
-     * @param residuo Residuo de la orden de traslado.
-     * @param destino Destino de la orden de traslado.
      * @param fecha_creacion Fecha de creacion de la orden de traslado.
      * @param fecha_limite Fecha limite de la orden de traslado.
      * @param cantidad Cantidad de la orden de traslado.
      */
-    public OrdenTraslado(String tratamiento, Residuo residuo, Destino destino, Calendar fecha_creacion, Calendar fecha_limite, int cantidad) {
+    public OrdenTraslado(String tratamiento, Calendar fecha_creacion, Calendar fecha_limite, int cantidad) {
         this.tratamiento = tratamiento;
-        this.residuo = residuo;
-        this.destino = destino;
         this.fecha_creacion = fecha_creacion;
         this.fecha_limite = fecha_limite;
         this.cantidad = cantidad;
@@ -55,20 +61,82 @@ public class OrdenTraslado {
      * Método constructor que inicializa todos los atributos.
      * @param id ID de la orden de traslado.
      * @param tratamiento Tratamiento de la orden de traslado.
-     * @param residuo Residuo de la orden de traslado.
-     * @param destino Destino de la orden de traslado.
      * @param fecha_creacion Fecha de creacion de la orden de traslado.
      * @param fecha_limite Fecha limite de la orden de traslado.
      * @param cantidad Cantidad de la orden de traslado.
      */
-    public OrdenTraslado(ObjectId id, String tratamiento, Residuo residuo, Destino destino, Calendar fecha_creacion, Calendar fecha_limite, int cantidad) {
+    public OrdenTraslado(ObjectId id, String tratamiento,Calendar fecha_creacion, Calendar fecha_limite, int cantidad) {
         this.id = id;
         this.tratamiento = tratamiento;
-        this.residuo = residuo;
-        this.destino = destino;
         this.fecha_creacion = fecha_creacion;
         this.fecha_limite = fecha_limite;
         this.cantidad = cantidad;
+    }
+
+    /**
+     * Método constructor que inicializa todos los atributos.
+     * @param tratamiento Tratamiento de la orden de traslado.
+     * @param fecha_creacion Fecha de creacion de la orden de traslado.
+     * @param fecha_limite Fecha limite de la orden de traslado.
+     * @param cantidad Cantidad de la orden de traslado.
+     * @param idResiduo Id del residuo a trasladar.
+     * @param idDestino Id del destino a trasladar.
+     * @param idProductor Id del productor que solicitó la orden.
+     */
+    public OrdenTraslado(String tratamiento,Calendar fecha_creacion, Calendar fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor) {
+        this.tratamiento = tratamiento;
+        this.fecha_creacion = fecha_creacion;
+        this.fecha_limite = fecha_limite;
+        this.cantidad = cantidad;
+        this.idResiduo = idResiduo;
+        this.idDestino = idDestino;
+        this.idProductor = idProductor;
+    }
+
+    /**
+     * Método constructor que inicializa todos los atributos.
+     * @param tratamiento Tratamiento de la orden de traslado.
+     * @param fecha_creacion Fecha de creacion de la orden de traslado.
+     * @param fecha_limite Fecha limite de la orden de traslado.
+     * @param cantidad Cantidad de la orden de traslado.
+     * @param idResiduo Id del residuo a trasladar.
+     * @param idDestino Id del destino a trasladar.
+     * @param idProductor Id del productor que solicitó la orden.
+     * @param precio Precio de la orden.
+     */
+    public OrdenTraslado(String tratamiento, Calendar fecha_creacion, Calendar fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor, int precio) {
+        this.tratamiento = tratamiento;
+        this.fecha_creacion = fecha_creacion;
+        this.fecha_limite = fecha_limite;
+        this.cantidad = cantidad;
+        this.idResiduo = idResiduo;
+        this.idDestino = idDestino;
+        this.idProductor = idProductor;
+        this.precio = precio;
+    }
+
+    /**
+     * Método constructor que inicializa todos los atributos.
+     * @param id ID de la orden de traslado.
+     * @param tratamiento Tratamiento de la orden de traslado.
+     * @param fecha_creacion Fecha de creacion de la orden de traslado.
+     * @param fecha_limite Fecha limite de la orden de traslado.
+     * @param cantidad Cantidad de la orden de traslado.
+     * @param idResiduo Id del residuo a trasladar.
+     * @param idDestino Id del destino a trasladar.
+     * @param idProductor Id del productor que solicitó la orden.
+     * @param precio Precio de la orden.
+     */
+    public OrdenTraslado(ObjectId id, String tratamiento, Calendar fecha_creacion, Calendar fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor, int precio) {
+        this.id = id;
+        this.tratamiento = tratamiento;
+        this.fecha_creacion = fecha_creacion;
+        this.fecha_limite = fecha_limite;
+        this.cantidad = cantidad;
+        this.idResiduo = idResiduo;
+        this.idDestino = idDestino;
+        this.idProductor = idProductor;
+        this.precio = precio;
     }
 
     /**
@@ -102,39 +170,7 @@ public class OrdenTraslado {
     public void setTratamiento(String tratamiento) {
         this.tratamiento = tratamiento;
     }
-
-    /**
-     * Método get que obtiene el residuo de una orden de traslado.
-     * @return Residuo de una orden de traslado.
-     */
-    public Residuo getResiduo() {
-        return residuo;
-    }
-
-    /**
-     * Método set que asigna un residuo de una orden de traslado.
-     * @param residuo Residuo de una orden de traslado.
-     */
-    public void setResiduo(Residuo residuo) {
-        this.residuo = residuo;
-    }
-
-    /**
-     * Método get que obtiene un destino de una orden de traslado.
-     * @return Destino de una orden de traslado.
-     */
-    public Destino getDestino() {
-        return destino;
-    }
-
-    /**
-     * Método set que asigna el destino de una orden de traslado.
-     * @param destino Destino de una orden de traslado.
-     */
-    public void setDestino(Destino destino) {
-        this.destino = destino;
-    }
-
+    
     /**
      * Método get que obtiene la fecha de creación de una orden de traslado.
      * @return Fecha de creación de una orden de traslado.
@@ -184,6 +220,70 @@ public class OrdenTraslado {
     }
 
     /**
+     * Método get que obtiene el id del residuo a trasladar.
+     * @return id del residuo a trasladar.
+     */
+    public ObjectId getIdResiduo() {
+        return idResiduo;
+    }
+
+    /**
+     * Método set que asigna el id del residuo a trasladar.
+     * @param idResiduo id del residuo a trasladar.
+     */
+    public void setIdResiduo(ObjectId idResiduo) {
+        this.idResiduo = idResiduo;
+    }
+
+    /**
+     * Método get que obtiene el id del destino a trasladar.
+     * @return id del destino a trasladar.
+     */
+    public ObjectId getIdDestino() {
+        return idDestino;
+    }
+
+    /**
+     * Método set que asigna el id del destino a trasladar.
+     * @param idDestino id del destino a trasladar.
+     */
+    public void setIdDestino(ObjectId idDestino) {
+        this.idDestino = idDestino;
+    }
+
+    /**
+     * Método get que obtiene el id del productor que solicitó la orden.
+     * @return id del productor que solicitó la orden.
+     */
+    public ObjectId getIdProductor() {
+        return idProductor;
+    }
+
+    /**
+     * Método set que asigna el id del productor que solicitó la orden.
+     * @param idProductor id del productor que solicitó la orden.
+     */
+    public void setIdProductor(ObjectId idProductor) {
+        this.idProductor = idProductor;
+    }
+
+    /**
+     * Método get que obtiene el precio de la orden.
+     * @return precio de la orden.
+     */
+    public int getPrecio() {
+        return precio;
+    }
+
+    /**
+     * Método set que asigna el precio de la orden.
+     * @param precio precio de la orden.
+     */
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    /**
      * Método hashcode.
      * @return Hashcode del objeto.
      */
@@ -220,8 +320,7 @@ public class OrdenTraslado {
      */
     @Override
     public String toString() {
-        return "OrdenTraslado{" + "id=" + id + ", tratamiento=" + tratamiento + ", residuo=" + residuo + ", destino=" + destino + ", fecha_creacion=" + fecha_creacion + ", fecha_limite=" + fecha_limite + ", cantidad=" + cantidad + '}';
+        return "OrdenTraslado{" + "id=" + id + ", fecha_creacion=" + fecha_creacion + ", cantidad=" + cantidad + ", precio=" + precio + '}';
     }
-
     
 }

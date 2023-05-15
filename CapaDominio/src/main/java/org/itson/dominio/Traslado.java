@@ -20,6 +20,8 @@ public class Traslado {
     private float costo;
     private int cantidad;
     private Calendar fecha_destino;
+    private ObjectId idOrdenTraslado;
+    
     /**
      * Método constructor por defecto.
      */
@@ -48,6 +50,19 @@ public class Traslado {
         this.costo = costo;
         this.cantidad = cantidad;
         this.fecha_destino = fecha_destino;
+    }
+    /**
+     * Método constructor que inicializa los atributos al valor de los parámetros enviados.
+     * @param costo costo del traslado.
+     * @param cantidad cantidad del traslado.
+     * @param fecha_destino destino del traslado.
+     * @param idOrdenTraslado id de su orden de traslado.
+     */
+    public Traslado(float costo, int cantidad, Calendar fecha_destino, ObjectId idOrdenTraslado) {
+        this.costo = costo;
+        this.cantidad = cantidad;
+        this.fecha_destino = fecha_destino;
+        this.idOrdenTraslado = idOrdenTraslado;
     }
     /**
      * Método get que devuelve la id del traslado.
@@ -107,6 +122,22 @@ public class Traslado {
     }
 
     /**
+     * Método que obtiene el id de su orden de traslado.
+     * @return id de su orden de traslado.
+     */
+    public ObjectId getIdOrdenTraslado() {
+        return idOrdenTraslado;
+    }
+
+    /**
+     * Método que asigna el id de su orden de traslado.
+     * @param idOrdenTraslado id de su orden de traslado.
+     */
+    public void setIdOrdenTraslado(ObjectId idOrdenTraslado) {
+        this.idOrdenTraslado = idOrdenTraslado;
+    }
+
+    /**
      * Método hashcode.
      * @return Hashcode del objeto.
      */
@@ -143,8 +174,7 @@ public class Traslado {
      */
     @Override
     public String toString() {
-        return "Traslado{" + "id=" + id + ", costo=" + costo + ", cantidad=" + cantidad + ", fecha_destino=" + fecha_destino + '}';
+        return "Traslado{" + "id=" + id + ", costo=" + costo + ", cantidad=" + cantidad + ", fecha_destino=" + fecha_destino + ", idOrdenTraslado=" + idOrdenTraslado + '}';
     }
-    
     
 }

@@ -116,6 +116,4 @@ public class ConstituyenteQuimico {
     public String toString() {
         return "ConstituyenteQuimico{" + "id=" + id + ", nombre=" + nombre + '}';
     }
-    
-    
 }

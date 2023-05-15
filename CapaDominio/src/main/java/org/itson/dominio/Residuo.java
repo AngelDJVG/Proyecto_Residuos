@@ -170,8 +170,7 @@ public class Residuo {
      */
     @Override
     public String toString() {
-        return "Residuo{" + "id=" + id + ", nombre=" + nombre + ", lote=" + lote + '}';
+        return "Residuo{" + "id=" + id + ", nombre=" + nombre + ", unidadMedida=" + unidadMedida + ", lote=" + lote + ", constituyentesQuimicos=" + constituyentesQuimicos + '}';
     }
-    
-    
+
 }

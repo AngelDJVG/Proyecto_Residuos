@@ -3,6 +3,7 @@
  */
 package org.itson.dominio;
 
+import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
 
@@ -18,6 +19,7 @@ public class Transportista {
     private ObjectId id;
     private String nombre;
     private String email;
+    private List<Traslado> listaTraslados;
     
     /**
      * Método constructor por defecto.
@@ -45,6 +47,18 @@ public class Transportista {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
+    }
+
+    /**
+     * Método constructor que inicializa todos los atributos.
+     * @param nombre Nombre del transportista.
+     * @param email Email del transportista.
+     * @param listaTraslados Traslados realizados por el transportista.
+     */
+    public Transportista(String nombre, String email, List<Traslado> listaTraslados) {
+        this.nombre = nombre;
+        this.email = email;
+        this.listaTraslados = listaTraslados;
     }
 
     /**
@@ -96,6 +110,22 @@ public class Transportista {
     }
 
     /**
+     * Método get que obtiene la lista de traslados realizados.
+     * @return Lista de traslados realizados.
+     */
+    public List<Traslado> getListaTraslados() {
+        return listaTraslados;
+    }
+
+    /**
+     * Método set que asigna la lista de traslados realizados.
+     * @param listaTraslados Lista de traslados realizados.
+     */
+    public void setListaTraslados(List<Traslado> listaTraslados) {
+        this.listaTraslados = listaTraslados;
+    }
+
+    /**
      * Método hashcode.
      * @return Hashcode del objeto.
      */
@@ -132,8 +162,7 @@ public class Transportista {
      */
     @Override
     public String toString() {
-        return "Transportista{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + '}';
+        return "Transportista{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", listaTraslados=" + listaTraslados + '}';
     }
-    
-    
+
 }
