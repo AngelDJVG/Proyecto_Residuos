@@ -18,19 +18,9 @@ import org.itson.dominio.ConstituyenteQuimico;
  * Ángel de Jesús Valenzuela García
  */
 public class ConstituyenteQuimicoDAO extends DAOGeneral<ConstituyenteQuimico>{
-
+    
     @Override
     protected MongoCollection<ConstituyenteQuimico> getColeccion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void agregar(ConstituyenteQuimico entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void actualizar(ConstituyenteQuimico entidad) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -46,6 +36,16 @@ public class ConstituyenteQuimicoDAO extends DAOGeneral<ConstituyenteQuimico>{
 
     @Override
     public ConstituyenteQuimico consultar(ConstituyenteQuimico parametros) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ConstituyenteQuimico agregar(ConstituyenteQuimico entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ConstituyenteQuimico actualizar(ConstituyenteQuimico entidad) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

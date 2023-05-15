@@ -15,6 +15,7 @@ import org.bson.types.ObjectId;
  * Mario Díaz Padilla
  * Gabriel Alberto Mancinas Cota
  * Ángel de Jesús Valenzuela García
+ * @param <T>
  */
 public abstract class DAOGeneral<T> {
     
@@ -27,14 +28,16 @@ public abstract class DAOGeneral<T> {
     /**
      * Metodo para agregar
      * @param entidad entidad a registrar segun su tipo.
+     * @return 
      */
-    public abstract void agregar(T entidad);
+    public abstract T agregar(T entidad);
     
     /**
      * Metodo para actualizar
      * @param entidad entidad a actualizar segun su tipo.
+     * @return 
      */
-    public abstract void actualizar(T entidad);
+    public abstract T actualizar(T entidad);
     
     /**
      * Metodo para consultar
