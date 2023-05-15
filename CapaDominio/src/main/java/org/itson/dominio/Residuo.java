@@ -73,7 +73,7 @@ public class Residuo {
     
     /**
      * Método get que obtiene el nombre del residuo.
-     * @return 
+     * @return nombre del residuo.
      */
     public String getNombre() {
         return nombre;
@@ -81,7 +81,7 @@ public class Residuo {
     
     /**
      * Método set que asigna un nombre al residuo.
-     * @param nombre 
+     * @param nombre nombre del residuo.
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -89,7 +89,7 @@ public class Residuo {
 
     /**
      * Método get que obtiene el lote de un residuo.
-     * @return 
+     * @return lote del residuo.
      */
     public String getLote() {
         return lote;
@@ -97,7 +97,7 @@ public class Residuo {
 
     /**
      * Método set que asigna un lote al residuo.
-     * @param lote 
+     * @param lote lote del residuo.
      */
     public void setLote(String lote) {
         this.lote = lote;

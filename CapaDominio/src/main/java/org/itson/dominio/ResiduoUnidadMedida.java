@@ -12,5 +12,10 @@ package org.itson.dominio;
  * Ángel de Jesús Valenzuela García
  */
 public enum ResiduoUnidadMedida {
-    KG,LT
+    /**
+     * Medida en kilos.
+     **/KG,
+     /**
+     * Medida en litros.
+     **/LT
 }

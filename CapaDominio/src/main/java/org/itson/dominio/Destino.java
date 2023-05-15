@@ -110,7 +110,7 @@ public class Destino {
     }
     /**
      * Método set que asigna el país del destino.
-     * @param pais 
+     * @param pais pais donde de destino.
      */
     public void setPais(String pais) {
         this.pais = pais;

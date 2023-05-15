@@ -1,0 +1,50 @@
+@options
+@packages
+-classpath
+'C:/Users/Zaurus/.m2/repository/org/mongodb/mongodb-driver/3.10.2/mongodb-driver-3.10.2.jar;C:/Users/Zaurus/.m2/repository/org/mongodb/bson/3.10.2/bson-3.10.2.jar;C:/Users/Zaurus/.m2/repository/org/mongodb/mongodb-driver-core/3.10.2/mongodb-driver-core-3.10.2.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'19'
+-sourcepath
+'C:/Users/Zaurus/Downloads/ITSON/Bases de datos 2/ProyectoFinal/Proyecto_Residuos/CapaDominio/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Zaurus/Downloads/ITSON/Bases de datos 2/ProyectoFinal/Proyecto_Residuos/CapaDominio/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'CapaDominio 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'CapaDominio 1.0-SNAPSHOT API'
+org.itson.dominio
+C:\Users\Zaurus\.m2\repository\org\mongodb\mongodb-driver\3.10.2\mongodb-driver-3.10.2.jar = 1683175374869
+C:\Users\Zaurus\.m2\repository\org\mongodb\bson\3.10.2\bson-3.10.2.jar = 1683175374924
+C:\Users\Zaurus\.m2\repository\org\mongodb\mongodb-driver-core\3.10.2\mongodb-driver-core-3.10.2.jar = 1683175375203
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\src\main\java = 1684107771861
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\allclasses-index.html = 1684112942902
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\allpackages-index.html = 1684112942905
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\copy.svg = 1684112942962
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\element-list = 1684112942802
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\help-doc.html = 1684112942956
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\index-all.html = 1684112942945
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\index.html = 1684112942951
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\jquery-ui.overrides.css = 1684112942981
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\member-search-index.js = 1684112942911
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\module-search-index.js = 1684112942907
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\overview-tree.html = 1684112942882
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\package-search-index.js = 1684112942909
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\script.js = 1684112942960
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\search-page.js = 1684112942967
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\search.html = 1684112942949
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\search.js = 1684112942964
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\stylesheet.css = 1684112942959
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\tag-search-index.js = 1684112942912
+C:\Users\Zaurus\Downloads\ITSON\Bases de datos 2\ProyectoFinal\Proyecto_Residuos\CapaDominio\target\site\apidocs\type-search-index.js = 1684112942910

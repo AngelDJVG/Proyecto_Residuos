@@ -47,7 +47,7 @@ public class ConstituyenteQuimico {
 
     /**
      * Método get que obtiene el ID del consituyente quimico.
-     * @return 
+     * @return Id del constituyente. 
      */
     public ObjectId getId() {
         return id;
@@ -63,7 +63,7 @@ public class ConstituyenteQuimico {
 
     /**
      * Método get que obtiene el nombre del constituyente quimico.
-     * @return 
+     * @return regresa nombre del constituyente.
      */
     public String getNombre() {
         return nombre;
@@ -71,7 +71,7 @@ public class ConstituyenteQuimico {
 
     /**
      * Método set que asigna un nombre al constituyente quimico.
-     * @param nombre 
+     * @param nombre nombre a actualizar.
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;

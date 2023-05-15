@@ -33,7 +33,11 @@
             <artifactId>mongodb-driver</artifactId>
             <version>3.10.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.itson</groupId>
+            <artifactId>CapaDominio</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <name>CapaConexion</name>
 </project>
