@@ -146,4 +146,9 @@ public class FachadaPersistencia implements IPersistencia {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public void agregarDatosPrueba(){
+        transportistaDAO.agregarPredeterminados();
+        productorDAO.agregarProductorPredeterminado();
+    }
+    
 }
