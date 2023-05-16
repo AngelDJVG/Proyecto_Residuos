@@ -23,11 +23,17 @@ import org.itson.registros.Interface.IConexionBD;
  */
 public class ConexionBD implements IConexionBD{
     private final String BASE_DATOS;
-    
+    /**
+     * Constructor que recibe el nombre de la base de datos.
+     * @param nombrebd Nombre de la base de datos.
+     */
     public ConexionBD(String nombrebd){
         this.BASE_DATOS=nombrebd;
     }
-
+    /**
+     * Metodo que regresa la base de datos.
+     * @return MongoDatabase de la base de datos utilizada.
+     */
     @Override
     public MongoDatabase getBaseDatos() { 
        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
