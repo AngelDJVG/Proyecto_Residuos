@@ -75,11 +75,18 @@ public class FachadaPersistencia implements IPersistencia {
     public OrdenTraslado actualizarOrdenTraslado(OrdenTraslado entidad) {
         return ordenTrasladoDAO.actualizar(entidad);
     }
-
+    /**
+     * Metodo que le pide al transportistaDAO la lista de correos de transportistas.
+     * @return Lista de string de los correos de transportistas.
+     */
     public List<String> consultarListaCorreosTransportistas(){
         return transportistaDAO.consultarCorreosTransportistas();
     }
-    
+    /**
+     * Metodo que consulta la lista de 
+     * @param idProductor
+     * @return 
+     */
     public List<Destino> consultarListaDestinosProcutor(ObjectId idProductor){
         return productorDAO.consultarListaDestinosProductor(idProductor);
     }
@@ -146,4 +153,9 @@ public class FachadaPersistencia implements IPersistencia {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public void agregarDatosPrueba(){
+        transportistaDAO.agregarPredeterminados();
+        productorDAO.agregarProductorPredeterminado();
+    }
+    
 }
