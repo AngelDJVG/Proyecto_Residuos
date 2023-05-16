@@ -11,6 +11,7 @@ import org.bson.types.ObjectId;
 import org.itson.capanegocio.ObjetoNegocio;
 import org.itson.daos.FachadaPersistencia;
 import org.itson.dominio.Destino;
+import org.itson.dominio.OrdenTraslado;
 import org.itson.dominio.Productor;
 import org.itson.dominio.Residuo;
 import org.itson.registros.Interface.IPersistencia;
@@ -26,12 +27,24 @@ public class ControlAplicacion {
     
      public ControlAplicacion(){
          objetoNegocio = new ObjetoNegocio();
-         productor = consultarProductorPredeterminado();
+         if(consultarProductorPredeterminado() != null)
+         {
+             productor = consultarProductorPredeterminado();
+         }else
+         {
+             productor = objetoNegocio.agregarProductorPredeterminado();
+         }
+         
         
+    }
+    public OrdenTraslado registrarOrdenTraslado(OrdenTraslado orden)
+    {
+        return objetoNegocio.agregarOrdenTraslado(orden);
     }
     public Productor obtenerProductor(ObjectId id){
         return objetoNegocio.consultarProductor(id);
     }
+
     public List<Residuo> obtenerListaResiduos(ObjectId id){
         return objetoNegocio.consultarListaResiduosProductor(id);
     }
@@ -47,7 +60,14 @@ public class ControlAplicacion {
     public void llenarComboBoxListaResiduos(ObjectId id,JComboBox cbx){
         List<Residuo> lista = obtenerListaResiduos(id);
         DefaultComboBoxModel comboBox = new DefaultComboBoxModel<>();
-        comboBox.addElement(lista.get(0));
+        comboBox.addAll(lista);
+        cbx.setModel(comboBox);
+        cbx.setSelectedIndex(0);
+    }
+    public void llenarComboBoxListaDestinos(ObjectId id,JComboBox cbx){
+        List<Destino> lista = obtenerListaDestinos(id);
+        DefaultComboBoxModel comboBox = new DefaultComboBoxModel<>();
+        comboBox.addAll(lista);
         cbx.setModel(comboBox);
         cbx.setSelectedIndex(0);
     }

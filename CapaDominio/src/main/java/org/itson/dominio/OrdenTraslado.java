@@ -3,6 +3,7 @@
  */
 package org.itson.dominio;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Objects;
 import org.bson.types.ObjectId;
@@ -20,8 +21,8 @@ public class OrdenTraslado {
     
     private ObjectId id;
     private String tratamiento;
-    private Calendar fecha_creacion;
-    private Calendar fecha_limite;
+    private LocalDateTime fecha_creacion;
+    private LocalDateTime fecha_limite;
     private int cantidad;
     private ObjectId idResiduo;
     private ObjectId idDestino;
@@ -50,7 +51,7 @@ public class OrdenTraslado {
      * @param fecha_limite Fecha limite de la orden de traslado.
      * @param cantidad Cantidad de la orden de traslado.
      */
-    public OrdenTraslado(String tratamiento, Calendar fecha_creacion, Calendar fecha_limite, int cantidad) {
+    public OrdenTraslado(String tratamiento, LocalDateTime fecha_creacion, LocalDateTime fecha_limite, int cantidad) {
         this.tratamiento = tratamiento;
         this.fecha_creacion = fecha_creacion;
         this.fecha_limite = fecha_limite;
@@ -66,7 +67,7 @@ public class OrdenTraslado {
      * @param fecha_limite Fecha limite de la orden de traslado.
      * @param cantidad Cantidad de la orden de traslado.
      */
-    public OrdenTraslado(ObjectId id, String tratamiento,Calendar fecha_creacion, Calendar fecha_limite, int cantidad) {
+    public OrdenTraslado(ObjectId id, String tratamiento,LocalDateTime fecha_creacion, LocalDateTime fecha_limite, int cantidad) {
         this.id = id;
         this.tratamiento = tratamiento;
         this.fecha_creacion = fecha_creacion;
@@ -84,7 +85,7 @@ public class OrdenTraslado {
      * @param idDestino Id del destino a trasladar.
      * @param idProductor Id del productor que solicitó la orden.
      */
-    public OrdenTraslado(String tratamiento,Calendar fecha_creacion, Calendar fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor) {
+    public OrdenTraslado(String tratamiento,LocalDateTime fecha_creacion, LocalDateTime fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor) {
         this.tratamiento = tratamiento;
         this.fecha_creacion = fecha_creacion;
         this.fecha_limite = fecha_limite;
@@ -106,7 +107,7 @@ public class OrdenTraslado {
      * @param idProductor Id del productor que solicitó la orden.
      * @param precio Precio de la orden.
      */
-    public OrdenTraslado(String tratamiento, Calendar fecha_creacion, Calendar fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor, int precio) {
+    public OrdenTraslado(String tratamiento, LocalDateTime fecha_creacion, LocalDateTime fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor, int precio) {
         this.tratamiento = tratamiento;
         this.fecha_creacion = fecha_creacion;
         this.fecha_limite = fecha_limite;
@@ -130,7 +131,7 @@ public class OrdenTraslado {
      * @param idProductor Id del productor que solicitó la orden.
      * @param precio Precio de la orden.
      */
-    public OrdenTraslado(ObjectId id, String tratamiento, Calendar fecha_creacion, Calendar fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor, int precio) {
+    public OrdenTraslado(ObjectId id, String tratamiento, LocalDateTime fecha_creacion, LocalDateTime fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor, int precio) {
         this.id = id;
         this.tratamiento = tratamiento;
         this.fecha_creacion = fecha_creacion;
@@ -178,7 +179,7 @@ public class OrdenTraslado {
      * Método get que obtiene la fecha de creación de una orden de traslado.
      * @return Fecha de creación de una orden de traslado.
      */
-    public Calendar getFecha_creacion() {
+    public LocalDateTime getFecha_creacion() {
         return fecha_creacion;
     }
 
@@ -186,7 +187,7 @@ public class OrdenTraslado {
      * Método set que asigna una fecha de creación de una orden de traslado.
      * @param fecha_creacion Fecha de creación de una orden de traslado.
      */
-    public void setFecha_creacion(Calendar fecha_creacion) {
+    public void setFecha_creacion(LocalDateTime fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
 
@@ -194,7 +195,7 @@ public class OrdenTraslado {
      * Método get que obtiene una fecha limite de una orden de traslado.
      * @return Fecha de creación de una orden de traslado.
      */
-    public Calendar getFecha_limite() {
+    public LocalDateTime getFecha_limite() {
         return fecha_limite;
     }
 
@@ -202,7 +203,7 @@ public class OrdenTraslado {
      * Método set que asigna una fecha limite de una orden de traslado.
      * @param fecha_limite Fecha limite de una orden de traslado.
      */
-    public void setFecha_limite(Calendar fecha_limite) {
+    public void setFecha_limite(LocalDateTime fecha_limite) {
         this.fecha_limite = fecha_limite;
     }
 
