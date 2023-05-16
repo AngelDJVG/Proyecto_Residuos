@@ -49,6 +49,7 @@ public class Destino {
         this.calle = calle;
         this.numero_casa = numero_casa;
         this.distancia = distancia;
+        this.id = new ObjectId();
     }
     /**
      * Método constructor de destino que inicializa sus atributos al valor de los parámetros.

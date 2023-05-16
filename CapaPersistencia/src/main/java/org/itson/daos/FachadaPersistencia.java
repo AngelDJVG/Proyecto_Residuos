@@ -23,10 +23,14 @@ public class FachadaPersistencia implements IPersistencia {
 
     private IConexionBD conexionBD;
     private OrdenTrasladoDAO ordenTrasladoDAO;
+    private ProductorDAO productorDAO;
+    private TransportistaDAO transportistaDAO;
 
     public FachadaPersistencia() {
         conexionBD = new ConexionBD("residuos");
         ordenTrasladoDAO = new OrdenTrasladoDAO(conexionBD);
+        productorDAO = new ProductorDAO(conexionBD);
+        transportistaDAO = new TransportistaDAO(conexionBD);
     }
 
     /**
@@ -72,158 +76,73 @@ public class FachadaPersistencia implements IPersistencia {
         return ordenTrasladoDAO.actualizar(entidad);
     }
 
-    @Override
-    public ConstituyenteQuimico consultarConstituyenteQuimico(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<String> consultarListaCorreosTransportistas(){
+        return transportistaDAO.consultarCorreosTransportistas();
     }
-
-    @Override
-    public List<Destino> consultarTodosConstituyentesQuimicos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public List<Destino> consultarListaDestinosProcutor(ObjectId idProductor){
+        return productorDAO.consultarListaDestinosProductor(idProductor);
     }
-
-    @Override
-    public ConstituyenteQuimico agregarConstituyenteQuimico(ConstituyenteQuimico entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ConstituyenteQuimico actualizarConstituyenteQuimico(ConstituyenteQuimico entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ConstituyenteQuimico eliminarConstituyenteQuimico(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Destino consultarDestino(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Destino> consultarTodosDestinos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Destino agregarDestino(Destino entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Destino actualizarDestino(Destino entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Destino eliminarDestino(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
     @Override
     public OrdenTraslado eliminarOrdenTraslado(ObjectId id) {
+        //No se ocupa para el caso de uso
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Productor consultarProductor(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return productorDAO.consultar(id);
     }
 
     @Override
     public List<Productor> consultarTodosProductor() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return productorDAO.consultarTodos();
     }
 
     @Override
     public Productor agregarProductor(Productor entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return productorDAO.agregar(entidad);
     }
 
     @Override
     public Productor actualizarProductor(Productor entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return productorDAO.actualizar(entidad);
     }
 
     @Override
     public Productor eliminarProductor(ObjectId id) {
+        //No se ocupa para el caso de uso
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public Residuo consultarResiduo(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Residuo> consultarListaResiduosProductor(ObjectId id){
+        return productorDAO.consultarListaResiduosProductor(id);
     }
-
-    @Override
-    public List<Residuo> consultarTodosResiduos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Residuo agregarResiduo(Residuo entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Residuo actualizarResiduo(Residuo entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Residuo eliminarResiduo(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
     @Override
     public Transportista consultarTransportista(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return transportistaDAO.consultar(id);
     }
 
     @Override
     public List<Transportista> consultarTodosTransportistas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return transportistaDAO.consultarTodos();
     }
 
     @Override
     public Transportista agregarTransportista(Transportista entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return transportistaDAO.agregar(entidad);
     }
 
     @Override
     public Transportista actualizarTransportista(Transportista entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return transportistaDAO.actualizar(entidad);
     }
 
     @Override
     public Transportista eliminarTransportista(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Traslado consultarTraslado(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Traslado> consultarTodosTraslados() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Traslado agregarTraslado(Traslado entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Traslado actualizarTraslado(Traslado entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Traslado eliminarTraslado(ObjectId id) {
+        //No se ocupa para el caso de uso
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

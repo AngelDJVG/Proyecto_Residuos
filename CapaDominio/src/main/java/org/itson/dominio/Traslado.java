@@ -50,6 +50,7 @@ public class Traslado {
         this.costo = costo;
         this.cantidad = cantidad;
         this.fecha_destino = fecha_destino;
+        this.id = new ObjectId();
     }
     /**
      * Método constructor que inicializa los atributos al valor de los parámetros enviados.
@@ -63,6 +64,7 @@ public class Traslado {
         this.cantidad = cantidad;
         this.fecha_destino = fecha_destino;
         this.idOrdenTraslado = idOrdenTraslado;
+        this.id = new ObjectId();
     }
     /**
      * Método get que devuelve la id del traslado.

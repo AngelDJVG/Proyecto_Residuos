@@ -55,6 +55,7 @@ public class OrdenTraslado {
         this.fecha_creacion = fecha_creacion;
         this.fecha_limite = fecha_limite;
         this.cantidad = cantidad;
+        this.id = new ObjectId();
     }
 
     /**
@@ -91,6 +92,7 @@ public class OrdenTraslado {
         this.idResiduo = idResiduo;
         this.idDestino = idDestino;
         this.idProductor = idProductor;
+        this.id = new ObjectId();
     }
 
     /**
@@ -113,6 +115,7 @@ public class OrdenTraslado {
         this.idDestino = idDestino;
         this.idProductor = idProductor;
         this.precio = precio;
+        this.id = new ObjectId();
     }
 
     /**

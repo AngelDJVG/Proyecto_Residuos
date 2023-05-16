@@ -7,13 +7,17 @@ package org.itson.daos;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.itson.dominio.ConstituyenteQuimico;
 import org.itson.dominio.Destino;
 import org.itson.dominio.Productor;
 import org.itson.dominio.Residuo;
+import org.itson.enums.ResiduoUnidadMedida;
+import org.itson.registros.Interface.IConexionBD;
 
 /**
  * 
@@ -24,22 +28,29 @@ import org.itson.dominio.Residuo;
  * Ángel de Jesús Valenzuela García
  */
 public class ProductorDAO extends DAOGeneral<Productor>{
-private final String NOMBRE_COLECCION = "productores";
+    private final String NOMBRE_COLECCION = "productores";
     private final MongoDatabase BASE_DATOS;
 
-    public ProductorDAO(ConexionBD CONEXION) {
+    public ProductorDAO(IConexionBD CONEXION) {
         this.BASE_DATOS = CONEXION.getBaseDatos();
     }
 
     @Override
     public Productor consultar(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        MongoCollection<Productor> collection = BASE_DATOS.getCollection(NOMBRE_COLECCION, Productor.class);
+        List<Productor> transportistas = new LinkedList<>();
+        collection.find(eq("_id", id)).into(transportistas);
+        return transportistas.isEmpty() ? null : transportistas.get(0);
     }
 
     @Override
     public List<Productor> consultarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        MongoCollection<Productor> collection = BASE_DATOS.getCollection(NOMBRE_COLECCION, Productor.class);
+        List<Productor> productores = new LinkedList<>();
+        collection.find().into(productores);
+        return productores;
     }
+    
     public Productor agregarProductorPredeterminado() {
            MongoCollection<Productor> collection = BASE_DATOS.getCollection(NOMBRE_COLECCION,Productor.class);
            ConstituyenteQuimico plomo = new ConstituyenteQuimico("Plomo");
@@ -72,12 +83,12 @@ private final String NOMBRE_COLECCION = "productores";
            List<ConstituyenteQuimico> consituyentesQuimicosRadioactivos = new ArrayList<>();
            consituyentesQuimicosRadioactivos.add(uranio);
            consituyentesQuimicosRadioactivos.add(plutonio);
-           Residuo residuo = new Residuo("Baterías", "2022-BATCH-ABC-001", consituyentesQuimicosBaterias);
-           Residuo residuo2 = new Residuo("Disolventes", "2022-BATCH-ABC-002", consituyentesQuimicosDisolventes);
-           Residuo residuo3 = new Residuo("Pinturas", "2022-BATCH-ABC-003", consituyentesQuimicosPinturas);
-           Residuo residuo4 = new Residuo("Residuos médicos", "2022-BATCH-ABC-004", consituyentesQuimicosMedicos);
-           Residuo residuo5 = new Residuo("Electrónicos", "2022-BATCH-ABC-005", consituyentesQuimicosElectronicos);
-           Residuo residuo6 = new Residuo("Residuos radioactivos", "2022-BATCH-ABC-006", consituyentesQuimicosRadioactivos);
+           Residuo residuo = new Residuo("Baterías", "2022-BATCH-ABC-001", consituyentesQuimicosBaterias, ResiduoUnidadMedida.KG);
+           Residuo residuo2 = new Residuo("Disolventes", "2022-BATCH-ABC-002", consituyentesQuimicosDisolventes, ResiduoUnidadMedida.LT);
+           Residuo residuo3 = new Residuo("Pinturas", "2022-BATCH-ABC-003", consituyentesQuimicosPinturas, ResiduoUnidadMedida.LT);
+           Residuo residuo4 = new Residuo("Residuos médicos", "2022-BATCH-ABC-004", consituyentesQuimicosMedicos, ResiduoUnidadMedida.KG);
+           Residuo residuo5 = new Residuo("Electrónicos", "2022-BATCH-ABC-005", consituyentesQuimicosElectronicos, ResiduoUnidadMedida.KG);
+           Residuo residuo6 = new Residuo("Residuos radioactivos", "2022-BATCH-ABC-006", consituyentesQuimicosRadioactivos, ResiduoUnidadMedida.LT);
            List<Residuo> residuos = new ArrayList<>();
            residuos.add(residuo);
            residuos.add(residuo2);
@@ -98,8 +109,8 @@ private final String NOMBRE_COLECCION = "productores";
            collection.insertOne(productor);
            return productor;
     }
-    public Productor consultarProductorPredeterminado()
-    {
+    
+    public Productor consultarProductorPredeterminado(){
         String nombreBuscado = "Productor de residuos S.A. de C.V.";
         MongoCollection<Productor> collection = BASE_DATOS.getCollection(NOMBRE_COLECCION, Productor.class);
 
@@ -113,14 +124,37 @@ private final String NOMBRE_COLECCION = "productores";
             return null;
         }
     }
+    
     @Override
     public Productor agregar(Productor entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        MongoCollection<Productor> collection = BASE_DATOS.getCollection(NOMBRE_COLECCION, Productor.class);
+        collection.insertOne(entidad);
+        return entidad;
     }
 
     @Override
     public Productor actualizar(Productor entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        MongoCollection<Productor> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, Productor.class);
+        coleccion.replaceOne(eq("_id", entidad.getId()), entidad);
+        return entidad;
+    }
+    
+    public List<Residuo> consultarListaResiduosProductor(ObjectId idProductor){
+        Productor productorConsultado = this.consultar(idProductor);
+        if(productorConsultado==null){
+            return null;
+        }else{
+            return productorConsultado.getListaResiduos();
+        }
+    }
+    
+    public List<Destino> consultarListaDestinosProductor(ObjectId idProductor){
+        Productor productorConsultado = this.consultar(idProductor);
+        if(productorConsultado==null){
+            return null;
+        }else{
+            return productorConsultado.getListaDestinos();
+        }
     }
     
 }
