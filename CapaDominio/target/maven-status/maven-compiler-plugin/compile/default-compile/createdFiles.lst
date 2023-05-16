@@ -5,5 +5,4 @@ org\itson\dominio\ResiduoUnidadMedida.class
 org\itson\dominio\ConstituyenteQuimico.class
 org\itson\dominio\OrdenTraslado.class
 org\itson\dominio\Traslado.class
-org\itson\dominio\Gobierno.class
 org\itson\dominio\Residuo.class
