@@ -6,6 +6,7 @@ package org.itson.dominio;
 import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
+import org.itson.enums.ResiduoUnidadMedida;
 
 /**
  * Clase de dominio de residuo.
