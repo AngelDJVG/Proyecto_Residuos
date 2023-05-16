@@ -75,21 +75,6 @@ public class FachadaPersistencia implements IPersistencia {
     public OrdenTraslado actualizarOrdenTraslado(OrdenTraslado entidad) {
         return ordenTrasladoDAO.actualizar(entidad);
     }
-    /**
-     * Metodo que le pide al transportistaDAO la lista de correos de transportistas.
-     * @return Lista de string de los correos de transportistas.
-     */
-    public List<String> consultarListaCorreosTransportistas(){
-        return transportistaDAO.consultarCorreosTransportistas();
-    }
-    /**
-     * Metodo que consulta la lista de 
-     * @param idProductor
-     * @return 
-     */
-    public List<Destino> consultarListaDestinosProcutor(ObjectId idProductor){
-        return productorDAO.consultarListaDestinosProductor(idProductor);
-    }
     
     @Override
     public OrdenTraslado eliminarOrdenTraslado(ObjectId id) {
@@ -122,10 +107,6 @@ public class FachadaPersistencia implements IPersistencia {
         //No se ocupa para el caso de uso
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    public List<Residuo> consultarListaResiduosProductor(ObjectId id){
-        return productorDAO.consultarListaResiduosProductor(id);
-    }
     
     @Override
     public Transportista consultarTransportista(ObjectId id) {
@@ -152,10 +133,29 @@ public class FachadaPersistencia implements IPersistencia {
         //No se ocupa para el caso de uso
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+     @Override
+    public List<String> consultarListaCorreosTransportistas(){
+        return transportistaDAO.consultarCorreosTransportistas();
+    }
+     @Override
+    public List<Destino> consultarListaDestinosProcutor(ObjectId idProductor){
+        return productorDAO.consultarListaDestinosProductor(idProductor);
+    }
+     @Override
+    public List<Residuo> consultarListaResiduosProductor(ObjectId idProductor){
+        return productorDAO.consultarListaResiduosProductor(idProductor);
+    }
 
-    public void agregarDatosPrueba(){
-        transportistaDAO.agregarPredeterminados();
-        productorDAO.agregarProductorPredeterminado();
+    @Override
+    public Productor consultarProductorPredeterminado() {
+       return productorDAO.consultarProductorPredeterminado();
+    }
+
+    @Override
+    public Productor agregarProductorPredeterminado() {
+        return productorDAO.agregarProductorPredeterminado();
     }
     
 }
+

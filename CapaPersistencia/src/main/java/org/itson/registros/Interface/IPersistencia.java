@@ -113,4 +113,9 @@ public interface IPersistencia {
      */
     public Transportista eliminarTransportista(ObjectId id);
     
+    public List<String> consultarListaCorreosTransportistas();
+    public List<Destino> consultarListaDestinosProcutor(ObjectId idProductor);
+    public List<Residuo> consultarListaResiduosProductor(ObjectId id);
+     public Productor consultarProductorPredeterminado();
+     public Productor agregarProductorPredeterminado();
 }

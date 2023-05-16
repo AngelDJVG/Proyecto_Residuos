@@ -18,6 +18,11 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.basic.BasicOptionPaneUI;
+import org.bson.types.ObjectId;
+import org.itson.capanegocio.ObjetoNegocio;
+import org.itson.control.ControlAplicacion;
+import org.itson.dominio.Productor;
+import org.itson.dominio.Residuo;
 
 /**
  * 
@@ -28,12 +33,15 @@ import javax.swing.plaf.basic.BasicOptionPaneUI;
  * Ángel de Jesús Valenzuela García
  */
 public class FrmRegistrarTraslado extends javax.swing.JFrame {
-
+    ControlAplicacion controlAplicacion;
     /**
      * Creates new form Menu
      */
-    public FrmRegistrarTraslado() {
+    public FrmRegistrarTraslado(ControlAplicacion controlAplicacion) {
         initComponents();
+        controlAplicacion = new ControlAplicacion();
+        Productor productor = controlAplicacion.obtenerProductor(controlAplicacion.getProductor().getId());
+        controlAplicacion.llenarComboBoxListaResiduos(productor.getId(),cbxResiduos);
         this.setLocationRelativeTo(null);
     }
     private void regresarMenu(){
@@ -42,20 +50,25 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         this.setVisible(false);
     }
     /**
-     * Método para validarNúmeros en un campo de texto.
+     * Método para validar números en un campo de texto.
+     *
      * @param evt KeyEvent del textfield.
      * @param txt Textfield con el contenido.
      */
-    private void validarNumeros(KeyEvent evt,JTextField txt){
+    private void validarNumeros(KeyEvent evt, JTextField txt) {
         char c = evt.getKeyChar();
+        String text = txt.getText();
+
         if (!Character.isDigit(c) && c != '.' && c != evt.VK_BACK_SPACE) {
             evt.consume(); // Ignorar el carácter no válido
-        } else if (c == '.' && txt.getText().contains(".")) {
+        } else if (c == '.' && text.contains(".")) {
             // Verificar que no haya más de un punto
-            int dotIndex = txt.getText().indexOf('.');
-            if (txt.getText().substring(dotIndex).contains(".")) {
+            int dotIndex = text.indexOf('.');
+            if (text.substring(dotIndex).contains(".")) {
                 evt.consume(); // Ignorar el segundo punto
             }
+        } else if (text.isEmpty() && c == '0') {
+            evt.consume(); // Ignorar el 0 como primer carácter
         }
     }
     /**
@@ -141,21 +154,20 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         lblCantidadTrasladar.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblCantidadTrasladar.setForeground(new java.awt.Color(255, 255, 255));
 
-        cbxResiduos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxResiduos.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
 
         txtCantidad.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
 
         lblUnidadDeMedida.setText("Unidad de medida");
         lblUnidadDeMedida.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblUnidadDeMedida.setForeground(new java.awt.Color(255, 255, 255));
 
         txtUnidadMedida.setEditable(false);
-        txtUnidadMedida.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtUnidadMedidaKeyTyped(evt);
-            }
-        });
 
         javax.swing.GroupLayout jplFondo1Layout = new javax.swing.GroupLayout(jplFondo1);
         jplFondo1.setLayout(jplFondo1Layout);
@@ -301,20 +313,20 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         regresarMenu();
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void txtUnidadMedidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadMedidaKeyTyped
-        validarNumeros(evt,txtUnidadMedida);
-    }//GEN-LAST:event_txtUnidadMedidaKeyTyped
-
     private void txtPresupuestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresupuestoKeyTyped
        validarNumeros(evt,txtPresupuesto);
     }//GEN-LAST:event_txtPresupuestoKeyTyped
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+      validarNumeros(evt,txtCantidad);
+    }//GEN-LAST:event_txtCantidadKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSolicitar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cbxDestinos;
-    private javax.swing.JComboBox<String> cbxResiduos;
+    private javax.swing.JComboBox<Residuo> cbxResiduos;
     private com.github.lgooddatepicker.components.DatePicker datePicker1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jplFondo1;

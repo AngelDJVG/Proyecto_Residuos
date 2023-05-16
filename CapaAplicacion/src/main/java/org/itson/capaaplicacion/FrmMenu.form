@@ -152,12 +152,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnOrdenes">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Microsoft YaHei" size="14" style="0"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Ver ordenes de traslado solicitadas"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Microsoft YaHei" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
@@ -166,12 +166,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnVerOfertas">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Microsoft YaHei" size="14" style="0"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Ver ofertas traslado"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Microsoft YaHei" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>

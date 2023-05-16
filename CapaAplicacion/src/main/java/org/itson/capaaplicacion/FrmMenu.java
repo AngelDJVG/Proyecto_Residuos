@@ -4,6 +4,8 @@
 package org.itson.capaaplicacion;
 
 import java.awt.Frame;
+import org.itson.capanegocio.ObjetoNegocio;
+import org.itson.control.ControlAplicacion;
 
 /**
  * 
@@ -14,18 +16,19 @@ import java.awt.Frame;
  * Ángel de Jesús Valenzuela García
  */
 public class FrmMenu extends javax.swing.JFrame {
-
+    ControlAplicacion controlAplicacion;
     /**
      * Creates new form Menu
      */
     public FrmMenu() {
         initComponents();
+        controlAplicacion = new ControlAplicacion();
         this.setLocationRelativeTo(null);
         this.btnVerOfertas.setEnabled(false);
     }
     
     private void abrirVentanaRegistrarTraslado(){
-        FrmRegistrarTraslado frm = new FrmRegistrarTraslado();
+        FrmRegistrarTraslado frm = new FrmRegistrarTraslado(controlAplicacion);
         frm.setVisible(true);
         this.setVisible(false);
     }
