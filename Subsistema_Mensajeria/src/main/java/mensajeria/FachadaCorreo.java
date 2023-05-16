@@ -1,7 +1,7 @@
 package mensajeria;
 
-import java.util.ArrayList;
 import java.util.List;
+import org.itson.daos.FachadaPersistencia;
 
 /**
  * Fachada del mecanismo de mensajería por correo.
@@ -9,10 +9,11 @@ import java.util.List;
  */
 public class FachadaCorreo implements IMensajeria{
 
-    /*
-    Representa la fachada dao.
-    */
-    //private FachadaDAO fachadaDAO;
+    
+    /**
+     * Representa la fachada dao.
+     */
+    private FachadaPersistencia fachadaDAO;
     /**
      * Representa el mecanismo de notificación por correo.
      */
@@ -25,7 +26,7 @@ public class FachadaCorreo implements IMensajeria{
      */
     public FachadaCorreo(String emailFrom, String passwordFrom) {
         fachadaMensajeria = new EmailNotifier(emailFrom, passwordFrom);
-        //fachadaDAO = new FachadaDAO();
+        fachadaDAO = new FachadaPersistencia();
     }
     
     /**
@@ -36,10 +37,7 @@ public class FachadaCorreo implements IMensajeria{
      */
     @Override
     public boolean enviarNotificacion(String asunto, String contenido) {
-        //List<String> destinatarios = fachadaDAO.consultarCorreosTransportistas();
-        List<String> destinatarios = new ArrayList<>(); //PRUEBA
-        destinatarios.add("mario.diaz233259@potros.itson.edu.mx"); //PRUEBA
+        List<String> destinatarios = fachadaDAO.consultarCorreosTransportistas();
         return fachadaMensajeria.enviarNotificacion(destinatarios, asunto, contenido);
     }
-    
 }
