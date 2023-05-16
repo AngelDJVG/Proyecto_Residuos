@@ -6,11 +6,13 @@ package org.itson.capaaplicacion;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
@@ -39,7 +41,28 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         frm.setVisible(true);
         this.setVisible(false);
     }
-    
+    /**
+     * Método para validarNúmeros en un campo de texto.
+     * @param evt KeyEvent del textfield.
+     * @param txt Textfield con el contenido.
+     */
+    private void validarNumeros(KeyEvent evt,JTextField txt){
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != '.' && c != evt.VK_BACK_SPACE) {
+            evt.consume(); // Ignorar el carácter no válido
+        } else if (c == '.' && txt.getText().contains(".")) {
+            // Verificar que no haya más de un punto
+            int dotIndex = txt.getText().indexOf('.');
+            if (txt.getText().substring(dotIndex).contains(".")) {
+                evt.consume(); // Ignorar el segundo punto
+            }
+        }
+    }
+    /**
+     * Método para mostrar un mensaje en un JOptionPane.
+     * @param mensaje
+     * @param titulo 
+     */
     public void mostrarMensaje(String mensaje, String titulo) {
     UIManager.put("OptionPane.background", new ColorUIResource(20,174,92));
     UIManager.put("Panel.background", new ColorUIResource(20,174,92));
@@ -64,7 +87,7 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         cbxResiduos = new javax.swing.JComboBox<>();
         txtCantidad = new javax.swing.JTextField();
         lblUnidadDeMedida = new javax.swing.JLabel();
-        cbxUnidad = new javax.swing.JComboBox<>();
+        txtUnidadMedida = new javax.swing.JTextField();
         btnSolicitar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         jplFondo2 = new javax.swing.JPanel();
@@ -85,9 +108,9 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
 
         jplFondoSuperior.setBackground(new java.awt.Color(4, 80, 40));
 
+        jLabel1.setText("Registrar traslado");
         jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Registrar traslado");
 
         javax.swing.GroupLayout jplFondoSuperiorLayout = new javax.swing.GroupLayout(jplFondoSuperior);
         jplFondoSuperior.setLayout(jplFondoSuperiorLayout);
@@ -110,25 +133,29 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
 
         jplFondo1.setBackground(new java.awt.Color(20, 174, 92));
 
+        lblResiduoTrasladar.setText("Residuo a trasladar");
         lblResiduoTrasladar.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblResiduoTrasladar.setForeground(new java.awt.Color(255, 255, 255));
-        lblResiduoTrasladar.setText("Residuo a trasladar");
 
+        lblCantidadTrasladar.setText("Cantidad a trasladar");
         lblCantidadTrasladar.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblCantidadTrasladar.setForeground(new java.awt.Color(255, 255, 255));
-        lblCantidadTrasladar.setText("Cantidad a trasladar");
 
         cbxResiduos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxResiduos.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
 
         txtCantidad.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
 
+        lblUnidadDeMedida.setText("Unidad de medida");
         lblUnidadDeMedida.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblUnidadDeMedida.setForeground(new java.awt.Color(255, 255, 255));
-        lblUnidadDeMedida.setText("Unidad de medida");
 
-        cbxUnidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilogramos", "Litros" }));
-        cbxUnidad.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        txtUnidadMedida.setEditable(false);
+        txtUnidadMedida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUnidadMedidaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jplFondo1Layout = new javax.swing.GroupLayout(jplFondo1);
         jplFondo1.setLayout(jplFondo1Layout);
@@ -143,9 +170,9 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                     .addComponent(lblUnidadDeMedida, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jplFondo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbxUnidad, 0, 211, Short.MAX_VALUE)
-                    .addComponent(cbxResiduos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCantidad))
+                    .addComponent(cbxResiduos, 0, 211, Short.MAX_VALUE)
+                    .addComponent(txtCantidad)
+                    .addComponent(txtUnidadMedida))
                 .addContainerGap())
         );
         jplFondo1Layout.setVerticalGroup(
@@ -161,8 +188,8 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jplFondo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbxUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnidadDeMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblUnidadDeMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
@@ -190,19 +217,24 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
 
         jplFondo2.setBackground(new java.awt.Color(175, 244, 198));
 
-        lblFechaTraslado.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblFechaTraslado.setText("Fecha del traslado");
+        lblFechaTraslado.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
 
-        lblDestino.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblDestino.setText("Destino");
+        lblDestino.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
 
-        cbxDestinos.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         cbxDestinos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilogramos", "Litros" }));
+        cbxDestinos.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
 
-        lblPresupuesto.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblPresupuesto.setText("Presupuesto base");
+        lblPresupuesto.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
 
         txtPresupuesto.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        txtPresupuesto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPresupuestoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jplFondo2Layout = new javax.swing.GroupLayout(jplFondo2);
         jplFondo2.setLayout(jplFondo2Layout);
@@ -269,13 +301,20 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         regresarMenu();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void txtUnidadMedidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadMedidaKeyTyped
+        validarNumeros(evt,txtUnidadMedida);
+    }//GEN-LAST:event_txtUnidadMedidaKeyTyped
+
+    private void txtPresupuestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresupuestoKeyTyped
+       validarNumeros(evt,txtPresupuesto);
+    }//GEN-LAST:event_txtPresupuestoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSolicitar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cbxDestinos;
     private javax.swing.JComboBox<String> cbxResiduos;
-    private javax.swing.JComboBox<String> cbxUnidad;
     private com.github.lgooddatepicker.components.DatePicker datePicker1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jplFondo1;
@@ -291,5 +330,6 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
     private javax.swing.JLabel lblUnidadDeMedida;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtPresupuesto;
+    private javax.swing.JTextField txtUnidadMedida;
     // End of variables declaration//GEN-END:variables
 }
