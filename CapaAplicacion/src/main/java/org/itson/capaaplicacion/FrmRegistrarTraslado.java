@@ -312,6 +312,11 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 cbxDestinosItemStateChanged(evt);
             }
         });
+        cbxDestinos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxDestinosActionPerformed(evt);
+            }
+        });
 
         lblKM.setText("Cantidad de KM");
         lblKM.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
@@ -368,7 +373,7 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPresupuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPresupuesto1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jplFondoGeneral.add(jplFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 420, 140));
@@ -432,6 +437,10 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
     private void dpFechaTrasladoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dpFechaTrasladoKeyTyped
         evt.consume();
     }//GEN-LAST:event_dpFechaTrasladoKeyTyped
+
+    private void cbxDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDestinosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxDestinosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

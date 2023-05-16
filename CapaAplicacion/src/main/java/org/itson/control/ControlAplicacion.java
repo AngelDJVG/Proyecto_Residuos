@@ -35,7 +35,6 @@ public class ControlAplicacion {
              productor = objetoNegocio.agregarProductorPredeterminado();
          }
          
-        
     }
     public OrdenTraslado registrarOrdenTraslado(OrdenTraslado orden)
     {
@@ -79,4 +78,12 @@ public class ControlAplicacion {
         return this.productor;
     }
      
+    public Residuo consultarResiduo(ObjectId idResiduo){
+        return objetoNegocio.consultarResiduo(idResiduo);
+    }
+    
+    public Destino consultarDestino(ObjectId idDestino){
+        return objetoNegocio.consultarDestino(idDestino);
+    }
+    
 }

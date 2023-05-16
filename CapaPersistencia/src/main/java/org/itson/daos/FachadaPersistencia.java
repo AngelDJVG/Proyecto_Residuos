@@ -25,6 +25,8 @@ public class FachadaPersistencia implements IPersistencia {
     private OrdenTrasladoDAO ordenTrasladoDAO;
     private ProductorDAO productorDAO;
     private TransportistaDAO transportistaDAO;
+    private ResiduoDAO residuoDAO;
+    private DestinoDAO destinoDAO;
 
 
     public FachadaPersistencia() {
@@ -32,6 +34,8 @@ public class FachadaPersistencia implements IPersistencia {
         ordenTrasladoDAO = new OrdenTrasladoDAO(conexionBD);
         productorDAO = new ProductorDAO(conexionBD);
         transportistaDAO = new TransportistaDAO(conexionBD);
+        residuoDAO = new ResiduoDAO(conexionBD);
+        destinoDAO = new DestinoDAO(conexionBD);
     }
 
     /**
@@ -172,7 +176,16 @@ public class FachadaPersistencia implements IPersistencia {
     public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo) {
         return ordenTrasladoDAO.consultarOrdenTrasladoResiduo(idResiduo);
     }
-    
+
+    @Override
+    public Residuo consultarResiduo(ObjectId idResiduo) {
+        return residuoDAO.consultar(idResiduo);
+    }
+
+    @Override
+    public Destino consultarDestino(ObjectId idDestino) {
+        return destinoDAO.consultar(idDestino);
+    }
     
 }
 

@@ -31,6 +31,14 @@ public class Residuo {
     }
 
     /**
+     * Método constructor que inicializa el id;
+     * @param id ID del residuo.
+     */
+    public Residuo(ObjectId id) {
+        this.id = id;
+    }
+
+    /**
      * Método constructor que inicializa el nombre, lote y la lista de constituyentes quimicos.
      * @param nombre Nombre del residuo.
      * @param lote Lote del residuo.

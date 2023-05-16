@@ -20,12 +20,15 @@ public class ObjetoNegocio implements INegocios{
     ControlProductor controlProductor;
     ControlTransportista controlTransportista;
     ControlOrdenTraslado controlOrdenesTraslado;
+    ControlResiduo controlResiduo;
+    ControlDestino controlDestino;
     
     public ObjetoNegocio(){
         controlProductor = new ControlProductor();
         controlTransportista = new ControlTransportista();
         controlOrdenesTraslado = new ControlOrdenTraslado();
-        
+        controlResiduo = new ControlResiduo();
+        controlDestino = new ControlDestino();
     }
     @Override
     public Productor consultarProductor(ObjectId id) {
@@ -90,8 +93,15 @@ public class ObjetoNegocio implements INegocios{
     public OrdenTraslado actualizarOrdenTraslado(OrdenTraslado entidad) {
         return controlOrdenesTraslado.actualizarOrdenTraslado(entidad);
     }
+
+    @Override
+    public Residuo consultarResiduo(ObjectId idResiduo) {
+        return controlResiduo.consultarResiduo(idResiduo);
+    }
+
+    @Override
+    public Destino consultarDestino(ObjectId idDestino) {
+        return controlDestino.consultarDestino(idDestino);
+    }
    
-    
-    
-    
 }

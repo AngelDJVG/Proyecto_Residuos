@@ -122,4 +122,6 @@ public interface IPersistencia {
      public void agregarTransportistasPredeterminados();
      public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor);
      public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo);
+     public Residuo consultarResiduo(ObjectId idResiduo);
+     public Destino consultarDestino(ObjectId idDestino);
 }

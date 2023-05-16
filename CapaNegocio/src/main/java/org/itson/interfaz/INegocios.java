@@ -55,4 +55,6 @@ public interface INegocios {
      * @return orden de traslado.
      */
     public OrdenTraslado actualizarOrdenTraslado(OrdenTraslado entidad);
+    public Residuo consultarResiduo(ObjectId idResiduo);
+    public Destino consultarDestino(ObjectId idDestino);
 }
