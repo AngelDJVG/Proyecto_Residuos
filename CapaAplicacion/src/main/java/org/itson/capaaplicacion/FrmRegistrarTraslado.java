@@ -108,11 +108,11 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
     }
     public OrdenTraslado extraerDatos(){
         Residuo residuo = (Residuo) cbxResiduos.getSelectedItem();
-        int cantidad = Integer.parseInt(txtCantidad.getText());
+        float cantidad = Float.parseFloat(txtCantidad.getText());
         LocalDateTime fechaOrden = LocalDateTime.now();
         LocalDateTime fechaLimite = LocalDateTime.of(dpFechaTraslado.getDate(), LocalTime.MIN);
         Destino destino = (Destino) cbxDestinos.getSelectedItem();
-        int precio = Integer.parseInt(txtPresupuesto.getText());
+        float precio = Float.parseFloat(txtPresupuesto.getText());
         OrdenTraslado orden2 = new OrdenTraslado("2dsad", fechaOrden, fechaLimite, cantidad, residuo.getId(), destino.getId(), productor.getId(), precio);
         OrdenTraslado orden = new OrdenTraslado("Neutralizar", fechaOrden, fechaLimite, cantidad, residuo.getId(), destino.getId(), productor.getId(), precio);
         return orden;

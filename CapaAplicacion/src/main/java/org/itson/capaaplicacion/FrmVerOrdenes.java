@@ -3,10 +3,14 @@
  */
 package org.itson.capaaplicacion;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import org.itson.control.ControlAplicacion;
+import org.itson.dominio.Destino;
 import org.itson.dominio.OrdenTraslado;
+import org.itson.dominio.Residuo;
 
 /**
  * 
@@ -67,16 +71,16 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
         jplFondoSuperiorLayout.setHorizontalGroup(
             jplFondoSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jplFondoSuperiorLayout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
+                .addContainerGap(275, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(198, 198, 198))
+                .addGap(262, 262, 262))
         );
         jplFondoSuperiorLayout.setVerticalGroup(
             jplFondoSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jplFondoSuperiorLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+            .addGroup(jplFondoSuperiorLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(16, 16, 16))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jplFondoGeneral.setBackground(new java.awt.Color(232, 233, 217));
@@ -95,18 +99,18 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
         tblOrdenesTraslado.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 12)); // NOI18N
         tblOrdenesTraslado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Fecha", "Residuo", "Cantidad", "Unidad", "Precio base", "Destino"
+                "Fecha", "Residuo", "Cantidad", "Unidad", "Precio base", "Destino"
             }
         ));
         jScrollPane1.setViewportView(tblOrdenesTraslado);
 
-        jplFondoGeneral.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 460, 230));
+        jplFondoGeneral.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 600, 230));
 
         jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
         jLabel1.setText("Residuo");
@@ -135,9 +139,7 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jplFondoSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jplFondoGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jplFondoGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,9 +168,15 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
         System.out.println(datos);
         DefaultTableModel modelo = (DefaultTableModel) tblOrdenesTraslado.getModel();
         modelo.setRowCount(0);
+        Residuo residuo;
+        Destino destino;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
         for (OrdenTraslado ot : datos) {
-            
-            Object[] fila = {ot.getId(),ot.getFecha_limite(),ot.getIdResiduo(),ot.getCantidad(),"UNIDAD",ot.getPrecio(),"DESTINO"};
+            residuo = controlAplicacion.consultarResiduo(ot.getIdResiduo());
+            destino = controlAplicacion.consultarDestino(ot.getIdDestino());
+            String fechaLimite = ot.getFecha_limite().format(formatter); 
+            Object[] fila = {fechaLimite,residuo.getNombre(),ot.getCantidad(),residuo.getUnidadMedida(),ot.getPrecio(),destino.getCiudad()};
             modelo.addRow(fila);
         }
     }

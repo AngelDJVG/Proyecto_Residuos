@@ -23,11 +23,11 @@ public class OrdenTraslado {
     private String tratamiento;
     private LocalDateTime fecha_creacion;
     private LocalDateTime fecha_limite;
-    private int cantidad;
+    private float cantidad;
     private ObjectId idResiduo;
     private ObjectId idDestino;
     private ObjectId idProductor;
-    private int precio;
+    private float precio;
 
     /**
      * Método constructor por defecto.
@@ -51,7 +51,7 @@ public class OrdenTraslado {
      * @param fecha_limite Fecha limite de la orden de traslado.
      * @param cantidad Cantidad de la orden de traslado.
      */
-    public OrdenTraslado(String tratamiento, LocalDateTime fecha_creacion, LocalDateTime fecha_limite, int cantidad) {
+    public OrdenTraslado(String tratamiento, LocalDateTime fecha_creacion, LocalDateTime fecha_limite, float cantidad) {
         this.tratamiento = tratamiento;
         this.fecha_creacion = fecha_creacion;
         this.fecha_limite = fecha_limite;
@@ -67,7 +67,7 @@ public class OrdenTraslado {
      * @param fecha_limite Fecha limite de la orden de traslado.
      * @param cantidad Cantidad de la orden de traslado.
      */
-    public OrdenTraslado(ObjectId id, String tratamiento,LocalDateTime fecha_creacion, LocalDateTime fecha_limite, int cantidad) {
+    public OrdenTraslado(ObjectId id, String tratamiento,LocalDateTime fecha_creacion, LocalDateTime fecha_limite, float cantidad) {
         this.id = id;
         this.tratamiento = tratamiento;
         this.fecha_creacion = fecha_creacion;
@@ -85,7 +85,7 @@ public class OrdenTraslado {
      * @param idDestino Id del destino a trasladar.
      * @param idProductor Id del productor que solicitó la orden.
      */
-    public OrdenTraslado(String tratamiento,LocalDateTime fecha_creacion, LocalDateTime fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor) {
+    public OrdenTraslado(String tratamiento,LocalDateTime fecha_creacion, LocalDateTime fecha_limite, float cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor) {
         this.tratamiento = tratamiento;
         this.fecha_creacion = fecha_creacion;
         this.fecha_limite = fecha_limite;
@@ -107,7 +107,7 @@ public class OrdenTraslado {
      * @param idProductor Id del productor que solicitó la orden.
      * @param precio Precio de la orden.
      */
-    public OrdenTraslado(String tratamiento, LocalDateTime fecha_creacion, LocalDateTime fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor, int precio) {
+    public OrdenTraslado(String tratamiento, LocalDateTime fecha_creacion, LocalDateTime fecha_limite, float cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor, float precio) {
         this.tratamiento = tratamiento;
         this.fecha_creacion = fecha_creacion;
         this.fecha_limite = fecha_limite;
@@ -131,7 +131,7 @@ public class OrdenTraslado {
      * @param idProductor Id del productor que solicitó la orden.
      * @param precio Precio de la orden.
      */
-    public OrdenTraslado(ObjectId id, String tratamiento, LocalDateTime fecha_creacion, LocalDateTime fecha_limite, int cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor, int precio) {
+    public OrdenTraslado(ObjectId id, String tratamiento, LocalDateTime fecha_creacion, LocalDateTime fecha_limite, float cantidad, ObjectId idResiduo, ObjectId idDestino, ObjectId idProductor, float precio) {
         this.id = id;
         this.tratamiento = tratamiento;
         this.fecha_creacion = fecha_creacion;
@@ -211,7 +211,7 @@ public class OrdenTraslado {
      * Método get que obtiene una cantidad de traslados.
      * @return cantidad de traslados.
      */
-    public int getCantidad() {
+    public float getCantidad() {
         return cantidad;
     }
 
@@ -219,7 +219,7 @@ public class OrdenTraslado {
      * Método set que asigna una cantidad de traslados.
      * @param cantidad cantidad de traslados.
      */
-    public void setCantidad(int cantidad) {
+    public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -275,7 +275,7 @@ public class OrdenTraslado {
      * Método get que obtiene el precio de la orden.
      * @return precio de la orden.
      */
-    public int getPrecio() {
+    public float getPrecio() {
         return precio;
     }
 
@@ -283,7 +283,7 @@ public class OrdenTraslado {
      * Método set que asigna el precio de la orden.
      * @param precio precio de la orden.
      */
-    public void setPrecio(int precio) {
+    public void setPrecio(float precio) {
         this.precio = precio;
     }
 
