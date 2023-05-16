@@ -26,8 +26,8 @@ public class ControlOrdenTraslado {
         return fachadaPersistencia.consultarOrdenesTrasladoProductor(idProductor);
     }
 
-    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo) {
-        return fachadaPersistencia.consultarOrdenTrasladoResiduo(idResiduo);
+    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(OrdenTraslado orden) {
+        return fachadaPersistencia.consultarOrdenTrasladoResiduo(orden);
     }
     
     /**

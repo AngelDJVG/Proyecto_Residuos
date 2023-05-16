@@ -24,7 +24,7 @@ public interface INegocios {
      public List<String> consultarListaCorreosTransportistas();
      public void agregarTransportistasPredeterminados();
      public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor);
-     public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo);
+     public List<OrdenTraslado> consultarOrdenTrasladoResiduo(OrdenTraslado orden);
     /**
      * Método para consultar una orden de traslado a partir de su id.
      *

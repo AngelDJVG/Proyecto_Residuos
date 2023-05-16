@@ -14,19 +14,25 @@ import org.itson.dominio.Destino;
 import org.itson.dominio.OrdenTraslado;
 import org.itson.dominio.Productor;
 import org.itson.dominio.Residuo;
+import org.itson.excepciones.PersistenciaException;
 import org.itson.registros.Interface.IPersistencia;
-
+import org.itson.subsistema_admtraslado.FachadaAdmTraslado;
+import org.itson.subsistema_admtraslado.IRegistrarTraslado;
 
 /**
  *
  * @author Gabriel Mancinas
  */
 public class ControlAplicacion {
-      ObjetoNegocio objetoNegocio;
-     Productor productor;
+
+    ObjetoNegocio objetoNegocio;
+    Productor productor;
+
+    private IRegistrarTraslado admTraslados;
 
     public ControlAplicacion() {
         objetoNegocio = new ObjetoNegocio();
+        admTraslados = new FachadaAdmTraslado("marioproxd14@gmail.com", "gywpjzckozhqtbrd");
         if (consultarProductorPredeterminado() != null) {
             productor = consultarProductorPredeterminado();
         } else {
@@ -36,9 +42,12 @@ public class ControlAplicacion {
 
     }
 
-    public OrdenTraslado registrarOrdenTraslado(OrdenTraslado orden) {
-        
-        return objetoNegocio.agregarOrdenTraslado(orden);
+    public boolean registrarOrdenTraslado(OrdenTraslado orden) throws PersistenciaException {
+        try {
+            return admTraslados.registrarTraslado(orden);
+        } catch (PersistenciaException ex) {
+            throw new PersistenciaException(ex.getMessage());
+        }
     }
 
     public Productor obtenerProductor(ObjectId id) {
@@ -60,34 +69,37 @@ public class ControlAplicacion {
     public Productor consultarProductorPredeterminado() {
         return objetoNegocio.consultarProductorPredeterminado();
     }
-    public void llenarComboBoxListaResiduos(ObjectId id,JComboBox cbx){
+
+    public void llenarComboBoxListaResiduos(ObjectId id, JComboBox cbx) {
         List<Residuo> lista = obtenerListaResiduos(id);
         DefaultComboBoxModel comboBox = new DefaultComboBoxModel<>();
         comboBox.addAll(lista);
         cbx.setModel(comboBox);
         cbx.setSelectedIndex(0);
     }
-    public void llenarComboBoxListaDestinos(ObjectId id,JComboBox cbx){
+
+    public void llenarComboBoxListaDestinos(ObjectId id, JComboBox cbx) {
         List<Destino> lista = obtenerListaDestinos(id);
         DefaultComboBoxModel comboBox = new DefaultComboBoxModel<>();
         comboBox.addAll(lista);
         cbx.setModel(comboBox);
         cbx.setSelectedIndex(0);
     }
-    public List<OrdenTraslado> consultarOrdenesTraslado(){
+
+    public List<OrdenTraslado> consultarOrdenesTraslado() {
         return objetoNegocio.consultarTodosOrdenTraslado();
     }
 
-    public Productor getProductor(){
+    public Productor getProductor() {
         return this.productor;
     }
-     
-    public Residuo consultarResiduo(ObjectId idResiduo){
+
+    public Residuo consultarResiduo(ObjectId idResiduo) {
         return objetoNegocio.consultarResiduo(idResiduo);
     }
-    
-    public Destino consultarDestino(ObjectId idDestino){
+
+    public Destino consultarDestino(ObjectId idDestino) {
         return objetoNegocio.consultarDestino(idDestino);
     }
-    
+
 }

@@ -3,33 +3,25 @@
  */
 package org.itson.capaaplicacion;
 
-import java.awt.Color;
-import java.awt.Dimension;
+
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Month;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
-import org.bson.types.ObjectId;
 import org.itson.control.ControlAplicacion;
 import org.itson.dominio.Destino;
 import org.itson.dominio.OrdenTraslado;
 import org.itson.dominio.Productor;
 import org.itson.dominio.Residuo;
+import org.itson.excepciones.PersistenciaException;
 
 /**
  * 
@@ -400,10 +392,16 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         if (esAlgunCampoVacio()) {
             JOptionPane.showMessageDialog(null, "No deje ningún campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            //mostrarMensaje("Registro realizado.","Éxito");
-            if (controlAplicacion.registrarOrdenTraslado(extraerDatos()) != null) {
-                mostrarMensaje("Registro éxitoso", "éxito");
-                regresarMenu();
+            try {
+                if (controlAplicacion.registrarOrdenTraslado(extraerDatos())) {
+                    mostrarMensaje("Registro éxitoso", "éxito");
+                    regresarMenu();
+                }else{
+                    mostrarMensaje("No se pudo registrar el traslado", "info");
+                    regresarMenu();
+                }
+            } catch (PersistenciaException ex) {
+                this.mostrarMensaje(ex.getMessage(), "info");
             }
         }
 

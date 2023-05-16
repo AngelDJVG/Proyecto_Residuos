@@ -6,11 +6,15 @@ package org.itson.daos;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.*;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.temporal.TemporalField;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.codecs.jsr310.LocalDateTimeCodec;
 import org.bson.types.ObjectId;
 import org.itson.dominio.OrdenTraslado;
 import org.itson.registros.Interface.IConexionBD;
@@ -78,56 +82,61 @@ public class OrdenTrasladoDAO extends DAOGeneral<OrdenTraslado> {
         return entidad;
     }
 
-    public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor){
+    public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor) {
         MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
-        GregorianCalendar hoy = new GregorianCalendar();
-        Calendar hoyInicio = Calendar.getInstance();
-        Calendar hoyFin = Calendar.getInstance();
-        hoyInicio.set(hoy.get(GregorianCalendar.YEAR), GregorianCalendar.MONTH, GregorianCalendar.DAY_OF_MONTH, 0, 0, 0);
-        hoyFin.set(hoy.get(GregorianCalendar.YEAR), GregorianCalendar.MONTH, GregorianCalendar.DAY_OF_MONTH, 0, 0, 0);
-        hoyFin.add(Calendar.DAY_OF_MONTH, 1);
-
+        
+        LocalDateTime fechaDeHoy = LocalDateTime.now();
+        
+        LocalDateTime filtroHoy = LocalDateTime.of(fechaDeHoy.getYear(),fechaDeHoy.getMonth() , fechaDeHoy.getDayOfMonth(), 0, 0, 0);
+        LocalDateTime filtroHoyFin = LocalDateTime.of(fechaDeHoy.getYear(),fechaDeHoy.getMonth() , fechaDeHoy.getDayOfMonth(), 23, 59, 59);   
+        
         List<OrdenTraslado> ordenesTraslado = new LinkedList<>();
 
         coleccion.find(and(
-                eq("idProductor",idProductor),
+                eq("idProductor", idProductor),
                 and(
-                        gte("fecha_creacion", hoyInicio), 
-                        lt("fecha_creacion", hoyFin
+                        gte("fecha_creacion", filtroHoy),
+                        lt("fecha_creacion", filtroHoyFin
                         )
                 )
         )).into(ordenesTraslado);
 
         return ordenesTraslado;
     }
-    
+
     /**
-     * Consulta las ordenes de traslado de un residuo realizadas por un productor.
-     * @param idResiduo Es el residuo que se buscará.
-     * @return Regresa la lista de ordenes de traslados de un residuo realizadas el día de hoy. 
+     * Consulta las ordenes de traslado de un residuo realizadas por un
+     * productor.
+     *
+     * @param orden Es la orden que se consultará
+     * @return Regresa la lista de ordenes de traslados de un residuo realizadas
+     * el día de hoy.
      */
-    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo){
+    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(OrdenTraslado orden) {
         MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
+
+         LocalDateTime fechaDeHoy = LocalDateTime.now();
         
-        GregorianCalendar hoy = new GregorianCalendar();
-        Calendar hoyInicio = Calendar.getInstance();
-        Calendar hoyFin = Calendar.getInstance();
-        hoyInicio.set(hoy.get(GregorianCalendar.YEAR), GregorianCalendar.MONTH, GregorianCalendar.DAY_OF_MONTH, 0, 0, 0);
-        hoyFin.set(hoy.get(GregorianCalendar.YEAR), GregorianCalendar.MONTH, GregorianCalendar.DAY_OF_MONTH, 0, 0, 0);
-        hoyFin.add(Calendar.DAY_OF_MONTH, 1);
+        LocalDateTime filtroHoy = LocalDateTime.of(fechaDeHoy.getYear(),fechaDeHoy.getMonth() , fechaDeHoy.getDayOfMonth(), 0, 0, 0);
+        LocalDateTime filtroHoyFin = LocalDateTime.of(fechaDeHoy.getYear(),fechaDeHoy.getMonth() , fechaDeHoy.getDayOfMonth(), 23, 59, 59);       
         
+
         List<OrdenTraslado> ordenesTraslado = new LinkedList<>();
-        
+
         coleccion.find(and(
-                eq("idResiduo",idResiduo),
+                eq("idProductor", orden.getIdProductor()),
                 and(
-                        gte("fecha_creacion", hoyInicio), 
-                        lt("fecha_creacion", hoyFin
+                        eq("idResiduo", orden.getIdResiduo()),
+                        and(
+                                gte("fecha_creacion", filtroHoy),
+                                and(
+                                        lt("fecha_creacion", filtroHoyFin)
+                                )
                         )
                 )
         )).into(ordenesTraslado);
-        
+
         return ordenesTraslado;
     }
-    
+
 }

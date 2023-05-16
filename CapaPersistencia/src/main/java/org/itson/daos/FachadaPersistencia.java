@@ -173,8 +173,8 @@ public class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo) {
-        return ordenTrasladoDAO.consultarOrdenTrasladoResiduo(idResiduo);
+    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(OrdenTraslado orden) {
+        return ordenTrasladoDAO.consultarOrdenTrasladoResiduo(orden);
     }
 
     @Override

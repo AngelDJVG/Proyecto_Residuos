@@ -3,7 +3,6 @@
  */
 package org.itson.capaaplicacion;
 
-import java.awt.Frame;
 import org.itson.control.ControlAplicacion;
 
 /**

@@ -70,8 +70,8 @@ public class ObjetoNegocio implements INegocios{
     }
 
     @Override
-    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo) {
-        return controlOrdenesTraslado.consultarOrdenTrasladoResiduo(idResiduo);
+    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(OrdenTraslado orden) {
+        return controlOrdenesTraslado.consultarOrdenTrasladoResiduo(orden);
     }
 
     @Override

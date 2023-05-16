@@ -3,7 +3,7 @@
  */
 package org.itson.dominio;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import org.bson.types.ObjectId;
 
@@ -19,7 +19,7 @@ public class Traslado {
     private ObjectId id;
     private float costo;
     private int cantidad;
-    private Calendar fecha_destino;
+    private LocalDateTime fecha_destino;
     private ObjectId idOrdenTraslado;
     
     /**
@@ -34,7 +34,7 @@ public class Traslado {
      * @param cantidad cantidad del traslado.
      * @param fecha_destino destino del traslado.
      */
-    public Traslado(ObjectId id, float costo, int cantidad, Calendar fecha_destino) {
+    public Traslado(ObjectId id, float costo, int cantidad, LocalDateTime fecha_destino) {
         this.id = id;
         this.costo = costo;
         this.cantidad = cantidad;
@@ -46,7 +46,7 @@ public class Traslado {
      * @param cantidad cantidad del traslado.
      * @param fecha_destino destino del traslado.
      */
-    public Traslado(float costo, int cantidad, Calendar fecha_destino) {
+    public Traslado(float costo, int cantidad, LocalDateTime fecha_destino) {
         this.costo = costo;
         this.cantidad = cantidad;
         this.fecha_destino = fecha_destino;
@@ -59,7 +59,7 @@ public class Traslado {
      * @param fecha_destino destino del traslado.
      * @param idOrdenTraslado id de su orden de traslado.
      */
-    public Traslado(float costo, int cantidad, Calendar fecha_destino, ObjectId idOrdenTraslado) {
+    public Traslado(float costo, int cantidad, LocalDateTime fecha_destino, ObjectId idOrdenTraslado) {
         this.costo = costo;
         this.cantidad = cantidad;
         this.fecha_destino = fecha_destino;
@@ -112,14 +112,14 @@ public class Traslado {
      * Método que obtiene la fecha de destino del traslado.
      * @return fecha de destino.
      */
-    public Calendar getFecha_destino() {
+    public LocalDateTime getFecha_destino() {
         return fecha_destino;
     }
     /**
      * Método que asigna la fecha de destino del traslado.
      * @param fecha_destino fecha de destino del traslado.
      */
-    public void setFecha_destino(Calendar fecha_destino) {
+    public void setFecha_destino(LocalDateTime fecha_destino) {
         this.fecha_destino = fecha_destino;
     }
 
