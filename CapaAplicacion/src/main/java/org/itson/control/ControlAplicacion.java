@@ -23,37 +23,41 @@ import org.itson.registros.Interface.IPersistencia;
  */
 public class ControlAplicacion {
       ObjetoNegocio objetoNegocio;
-      Productor productor;
-    
-     public ControlAplicacion(){
-         objetoNegocio = new ObjetoNegocio();
-         if(consultarProductorPredeterminado() != null)
-         {
-             productor = consultarProductorPredeterminado();
-         }else
-         {
-             productor = objetoNegocio.agregarProductorPredeterminado();
-         }
-         
+     Productor productor;
+
+    public ControlAplicacion() {
+        objetoNegocio = new ObjetoNegocio();
+        if (consultarProductorPredeterminado() != null) {
+            productor = consultarProductorPredeterminado();
+        } else {
+            productor = objetoNegocio.agregarProductorPredeterminado();
+            objetoNegocio.agregarTransportistasPredeterminados();
+        }
+
     }
-    public OrdenTraslado registrarOrdenTraslado(OrdenTraslado orden)
-    {
+
+    public OrdenTraslado registrarOrdenTraslado(OrdenTraslado orden) {
+        
         return objetoNegocio.agregarOrdenTraslado(orden);
     }
-    public Productor obtenerProductor(ObjectId id){
+
+    public Productor obtenerProductor(ObjectId id) {
         return objetoNegocio.consultarProductor(id);
     }
 
-    public List<Residuo> obtenerListaResiduos(ObjectId id){
+    public List<Residuo> obtenerListaResiduos(ObjectId id) {
         return objetoNegocio.consultarListaResiduosProductor(id);
     }
-    public List<Destino> obtenerListaDestinos(ObjectId id){
+
+    public List<Destino> obtenerListaDestinos(ObjectId id) {
         return objetoNegocio.consultarListaDestinosProcutor(id);
     }
-    public List<String> consultarListaCorreosTransportistas(){
+
+    public List<String> consultarListaCorreosTransportistas() {
         return objetoNegocio.consultarListaCorreosTransportistas();
     }
-    public Productor consultarProductorPredeterminado(){
+
+    public Productor consultarProductorPredeterminado() {
         return objetoNegocio.consultarProductorPredeterminado();
     }
     public void llenarComboBoxListaResiduos(ObjectId id,JComboBox cbx){

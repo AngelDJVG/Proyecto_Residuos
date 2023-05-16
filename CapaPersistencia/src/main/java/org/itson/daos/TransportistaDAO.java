@@ -39,17 +39,15 @@ public class TransportistaDAO extends DAOGeneral<Transportista> {
         MongoCollection<Transportista> collection = BASE_DATOS.getCollection(NOMBRE_COLECCION, Transportista.class);
         Transportista transportista = new Transportista("Mario Diaz", "mario.diaz233259@potros.itson.edu.mx");
         Transportista transportista1 = new Transportista("Julio Chon", "julio.chon233242@potros.itson.edu.mx");
-        Transportista transportista2 = new Transportista("Adrian Macias", "adrian.macias@itson.edu.mx");
         Transportista transportista3 = new Transportista("Angel Valenzuela", "angel.valenzuela233109@potros.itson.edu.mx");
         Transportista transportista4 = new Transportista("Gabriel Mancinas", "gabriel.mancinas233410@potros.itson.edu.mx");
-        Transportista transportista5 = new Transportista("Gibran Duran", "christian.duran@potros.itson.edu.mx ");
         List<Transportista> transportistas = new ArrayList<>();
         transportistas.add(transportista);
         transportistas.add(transportista1);
-        transportistas.add(transportista2);
+
         transportistas.add(transportista3);
         transportistas.add(transportista4);
-        transportistas.add(transportista5);
+
         collection.insertMany(transportistas);
     }
 
