@@ -89,6 +89,7 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
         btnSalir.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
         btnSalir.setText("Filtrar");
         btnSalir.setBorder(null);
+        btnSalir.setEnabled(false);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -115,6 +116,8 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
         jLabel1.setText("Residuo");
         jplFondoGeneral.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 110, 30));
+
+        jTextField1.setEnabled(false);
         jplFondoGeneral.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 110, -1));
 
         jLabel3.setBackground(new java.awt.Color(4, 80, 40));
@@ -155,13 +158,13 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnSalirActionPerformed
-
     private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
        regresarMenu();
     }//GEN-LAST:event_btnSalir1ActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
     
     private void cargarTablaOrdenes(){
         List<OrdenTraslado> datos = controlAplicacion.consultarOrdenesTraslado();

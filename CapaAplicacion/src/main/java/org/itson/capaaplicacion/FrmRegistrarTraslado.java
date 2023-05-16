@@ -64,14 +64,18 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
 
         if (!Character.isDigit(c) && c != '.' && c != evt.VK_BACK_SPACE) {
             evt.consume(); // Ignorar el carácter no válido
+        } else if ((text.isEmpty() || text.equals("0")) && c == '0') {
+            evt.consume(); // Ignorar el 0 como primer carácter
+        } else if (c == '.' && (text.isEmpty() || text.equals("0"))) {
+            evt.consume(); // Ignorar el punto como primer carácter
+        } else if (text.length() >= 7) {
+            evt.consume(); // Ignorar la entrada si se alcanza la longitud máxima de 10 caracteres
         } else if (c == '.' && text.contains(".")) {
             // Verificar que no haya más de un punto
             int dotIndex = text.indexOf('.');
             if (text.substring(dotIndex).contains(".")) {
                 evt.consume(); // Ignorar el segundo punto
             }
-        } else if (text.isEmpty() && c == '0') {
-            evt.consume(); // Ignorar el 0 como primer carácter
         }
     }
     /**
