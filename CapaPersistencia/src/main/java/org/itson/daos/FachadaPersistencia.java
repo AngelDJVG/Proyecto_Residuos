@@ -30,7 +30,7 @@ public class FachadaPersistencia implements IPersistencia {
      * @return orden de traslado.
      */
     @Override
-    public OrdenTraslado consultar(ObjectId id) {
+    public OrdenTraslado consultarOrdenTraslado(ObjectId id) {
         return ordenTrasladoDAO.consultar(id);
     }
 
@@ -40,7 +40,7 @@ public class FachadaPersistencia implements IPersistencia {
      * @return lista de ordenes de traslado.
      */
     @Override
-    public List consultarTodos() {
+    public List consultarTodosOrdenTraslado() {
         return ordenTrasladoDAO.consultarTodos();
     }
 
@@ -51,7 +51,7 @@ public class FachadaPersistencia implements IPersistencia {
      * @return orden de traslado.
      */
     @Override
-    public OrdenTraslado agregar(OrdenTraslado entidad) {
+    public OrdenTraslado agregarOrdenTraslado(OrdenTraslado entidad) {
         return ordenTrasladoDAO.agregar(entidad);
     }
 
@@ -62,7 +62,7 @@ public class FachadaPersistencia implements IPersistencia {
      * @return orden de traslado.
      */
     @Override
-    public OrdenTraslado actualizar(OrdenTraslado entidad) {
+    public OrdenTraslado actualizarOrdenTraslado(OrdenTraslado entidad) {
         return ordenTrasladoDAO.actualizar(entidad);
     }
 
