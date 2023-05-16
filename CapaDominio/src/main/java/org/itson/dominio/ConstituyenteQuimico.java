@@ -33,6 +33,7 @@ public class ConstituyenteQuimico {
      */
     public ConstituyenteQuimico(String nombre) {
         this.nombre = nombre;
+        this.id = new ObjectId();
     }
 
     /**

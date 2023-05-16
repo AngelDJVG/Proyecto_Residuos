@@ -34,6 +34,7 @@ public class Productor {
      */
     public Productor(String nombre) {
         this.nombre = nombre;
+        this.id = new ObjectId();
     }
     
     /**
@@ -53,7 +54,7 @@ public class Productor {
      * @param listaDestinos Destinos registrados por el productor.
      */
     public Productor(String nombre, List<Residuo> listaResiduos, List<Destino> listaDestinos) {
-        this.id = id;
+        this.id = new ObjectId();
         this.nombre = nombre;
         this.listaResiduos = listaResiduos;
         this.listaDestinos = listaDestinos;
@@ -65,6 +66,7 @@ public class Productor {
      * @param listaResiduos Residuos registrados por el productor.
      */
     public Productor(String nombre, List<Residuo> listaResiduos) {
+        this.id = new ObjectId();
         this.nombre = nombre;
         this.listaResiduos = listaResiduos;
     }
@@ -75,6 +77,7 @@ public class Productor {
      * @param nombre Nombre del productor.
      */
     public Productor(List<Destino> listaDestinos, String nombre) {
+        this.id = new ObjectId();
         this.nombre = nombre;
         this.listaDestinos = listaDestinos;
     }

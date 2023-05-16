@@ -35,6 +35,7 @@ public class Transportista {
     public Transportista(String nombre, String email) {
         this.nombre = nombre;
         this.email = email;
+        this.id = new ObjectId();
     }
     
     /**
@@ -59,6 +60,7 @@ public class Transportista {
         this.nombre = nombre;
         this.email = email;
         this.listaTraslados = listaTraslados;
+        this.id = new ObjectId();
     }
 
     /**

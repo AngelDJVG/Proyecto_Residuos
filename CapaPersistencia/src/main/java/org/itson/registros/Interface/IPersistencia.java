@@ -13,65 +13,7 @@ import org.itson.dominio.*;
  * Mancinas Cota Ángel de Jesús Valenzuela García
  */
 public interface IPersistencia {
-    /**
-     * Método para consultar un constituyente quimico.
-     * @param id id del constituyente quimico a consultar.
-     * @return constituyente quimico encontrado.
-     */
-    public ConstituyenteQuimico consultarConstituyenteQuimico(ObjectId id);
-    /**
-     * Método para consultar todos los constituyentes quimicos.
-     * @return Todos los constituyentes en una lista.
-     */
-    public List<Destino> consultarTodosConstituyentesQuimicos();
-    /**
-     * Método que agrega un constituyente quimico.
-     * @param entidad constituyente quimico a agregar.
-     * @return constituyente quimico agregado.
-     */
-    public ConstituyenteQuimico agregarConstituyenteQuimico(ConstituyenteQuimico entidad);
-    /**
-     * Método que actualiza un constituyente quimico.
-     * @param entidad constituyente quimico a actualizar.
-     * @return constituyente quimico actualizado.
-     */
-    public ConstituyenteQuimico actualizarConstituyenteQuimico(ConstituyenteQuimico entidad);
-    /**
-     * Método que elimina un constituyente quimico. 
-     * @param id Id del constituyente quimico a eliminar.
-     * @return constituyente quimico eliminado.
-     */
-    public ConstituyenteQuimico eliminarConstituyenteQuimico(ObjectId id);
     
-    /**
-     * Método para consultar un destino a partir de su id.
-     * @param id Id del destino.
-     * @return destino.
-     */
-    public Destino consultarDestino (ObjectId id);
-    /**
-     * Método para consultar todos los destinos.
-     * @return Todos los destinos en una lista.
-     */
-    public List<Destino> consultarTodosDestinos();
-    /**
-     * Método que agrega un destino.
-     * @param entidad Destino a agregar.
-     * @return Destino agregado.
-     */
-    public Destino agregarDestino(Destino entidad);
-    /**
-     * Método que actualiza un destino.
-     * @param entidad Destino a actualizar.
-     * @return Destino actualizado.
-     */
-    public Destino actualizarDestino(Destino entidad);
-    /**
-     * Método que elimina un destino.
-     * @param id Id del destino a eliminar.
-     * @return Destino eliminado.
-     */
-    public Destino eliminarDestino(ObjectId id);
     
     /**
      * Método para consultar una orden de traslado a partir de su id.
@@ -140,36 +82,7 @@ public interface IPersistencia {
      */
     public Productor eliminarProductor(ObjectId id);
     
-    /**
-     * Método que consulta un residuo por id.
-     * @param id id del residuo a consultar.
-     * @return residuo encontrado.
-     */
-    public Residuo consultarResiduo(ObjectId id);
-    /**
-     * Método que consulta todos los residuos.
-     * @return todos los residuos en una lista.
-     */
-    public List<Residuo> consultarTodosResiduos();
-    /**
-     * Método que agrega un residuo.
-     * @param entidad residuo a agregar
-     * @return residuo agregado.
-     */
-    public Residuo agregarResiduo(Residuo entidad);
-    /**
-     * Método que actualiza un residuo.
-     * @param entidad residuo a actualizar.
-     * @return residuo actualizado.
-     */
-    public Residuo actualizarResiduo(Residuo entidad);
-    /**
-     * Método que elimina un residuo.
-     * @param id id del residuo a eliminar.
-     * @return residuo eliminado.
-     */
-    public Residuo eliminarResiduo(ObjectId id);
-    
+  
     /**
      * Método que consulta un transportista por id.
      * @param id id del transportista.
@@ -200,33 +113,4 @@ public interface IPersistencia {
      */
     public Transportista eliminarTransportista(ObjectId id);
     
-    /**
-     * Método que consulta un traslado por su id.
-     * @param id id del traslado.
-     * @return traslado encontrado.
-     */
-    public Traslado consultarTraslado(ObjectId id);
-    /**
-     * Método que consulta todos los traslados.
-     * @return todos los traslados en una lista.
-     */
-    public List<Traslado> consultarTodosTraslados();
-    /**
-     * Método que agrega un traslado.
-     * @param entidad traslado a agregar.
-     * @return traslado agregado.
-     */
-    public Traslado agregarTraslado(Traslado entidad);
-    /**
-     * Método que actualiza un traslado.
-     * @param entidad traslado a actualizar.
-     * @return traslado actualizado.
-     */
-    public Traslado actualizarTraslado(Traslado entidad);
-    /**
-     * Método que elimina un traslado.
-     * @param id id del traslado a eliminar.
-     * @return traslado eliminado.
-     */
-    public Traslado eliminarTraslado(ObjectId id);
 }

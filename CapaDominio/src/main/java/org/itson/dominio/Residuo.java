@@ -36,10 +36,12 @@ public class Residuo {
      * @param lote Lote del residuo.
      * @param constituyentesQuimicos Constituyentes quimicos del residuo.
      */
-    public Residuo(String nombre, String lote, List<ConstituyenteQuimico> constituyentesQuimicos) {
+    public Residuo(String nombre, String lote, List<ConstituyenteQuimico> constituyentesQuimicos, ResiduoUnidadMedida um) {
         this.nombre = nombre;
         this.lote = lote;
         this.constituyentesQuimicos = constituyentesQuimicos;
+        this.id = new ObjectId();
+        this.unidadMedida = um;
     }
     
     /**
