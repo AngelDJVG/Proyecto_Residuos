@@ -24,7 +24,7 @@ import org.itson.dominio.Residuo;
  * Ángel de Jesús Valenzuela García
  */
 public class ProductorDAO extends DAOGeneral<Productor>{
-private final String NOMBRE_COLECCION = "productor";
+private final String NOMBRE_COLECCION = "productores";
     private final MongoDatabase BASE_DATOS;
 
     public ProductorDAO(ConexionBD CONEXION) {
