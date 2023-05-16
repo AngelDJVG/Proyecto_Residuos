@@ -3,6 +3,11 @@
  */
 package org.itson.capaaplicacion;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import org.itson.control.ControlAplicacion;
+import org.itson.dominio.OrdenTraslado;
+
 /**
  * 
  * @author Equipo 3 
@@ -13,17 +18,21 @@ package org.itson.capaaplicacion;
  */
 public class FrmVerOrdenes extends javax.swing.JFrame {
 
+    ControlAplicacion controlAplicacion;
     /**
      * Creates new form FrmVerOrdenes
      */
     public FrmVerOrdenes() {
         initComponents();
+        this.controlAplicacion = new ControlAplicacion();
         this.setLocationRelativeTo(null);
+        cargarTablaOrdenes();
     }
     private void regresarMenu(){
         FrmMenu frm = new FrmMenu();
         frm.setVisible(true);
         this.setVisible(false);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +48,7 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
         jplFondoGeneral = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblOrdenesTraslado = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -83,8 +92,8 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
         });
         jplFondoGeneral.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 110, 30));
 
-        jTable1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblOrdenesTraslado.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 12)); // NOI18N
+        tblOrdenesTraslado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -95,7 +104,7 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
                 "ID", "Fecha", "Residuo", "Cantidad", "Unidad", "Precio base", "Destino"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblOrdenesTraslado);
 
         jplFondoGeneral.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 460, 230));
 
@@ -151,7 +160,18 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
     private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
        regresarMenu();
     }//GEN-LAST:event_btnSalir1ActionPerformed
-
+    
+    private void cargarTablaOrdenes(){
+        List<OrdenTraslado> datos = controlAplicacion.consultarOrdenesTraslado();
+        System.out.println(datos);
+        DefaultTableModel modelo = (DefaultTableModel) tblOrdenesTraslado.getModel();
+        modelo.setRowCount(0);
+        for (OrdenTraslado ot : datos) {
+            
+            Object[] fila = {ot.getId(),ot.getFecha_limite(),ot.getIdResiduo(),ot.getCantidad(),"UNIDAD",ot.getPrecio(),"DESTINO"};
+            modelo.addRow(fila);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
@@ -160,9 +180,9 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel jplFondoGeneral;
     private javax.swing.JPanel jplFondoSuperior;
+    private javax.swing.JTable tblOrdenesTraslado;
     // End of variables declaration//GEN-END:variables
 }

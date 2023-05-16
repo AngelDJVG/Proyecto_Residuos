@@ -71,6 +71,10 @@ public class ControlAplicacion {
         cbx.setModel(comboBox);
         cbx.setSelectedIndex(0);
     }
+    public List<OrdenTraslado> consultarOrdenesTraslado(){
+        return objetoNegocio.consultarTodosOrdenTraslado();
+    }
+
     public Productor getProductor(){
         return this.productor;
     }

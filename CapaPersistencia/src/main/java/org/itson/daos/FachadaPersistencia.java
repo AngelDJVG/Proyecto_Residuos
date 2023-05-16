@@ -26,6 +26,7 @@ public class FachadaPersistencia implements IPersistencia {
     private ProductorDAO productorDAO;
     private TransportistaDAO transportistaDAO;
 
+
     public FachadaPersistencia() {
         conexionBD = new ConexionBD("residuos");
         ordenTrasladoDAO = new OrdenTrasladoDAO(conexionBD);

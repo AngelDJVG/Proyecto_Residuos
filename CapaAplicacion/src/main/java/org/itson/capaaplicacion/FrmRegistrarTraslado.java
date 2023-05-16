@@ -7,8 +7,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JButton;
@@ -46,10 +48,11 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
     public FrmRegistrarTraslado(ControlAplicacion controlAplicacion) {
         initComponents();
         this.controlAplicacion = new ControlAplicacion();
-        
+        configurarDatePicker();
         productor = controlAplicacion.obtenerProductor(controlAplicacion.getProductor().getId());
         controlAplicacion.llenarComboBoxListaResiduos(productor.getId(),cbxResiduos);
         controlAplicacion.llenarComboBoxListaDestinos(productor.getId(),cbxDestinos);
+        txtKM.setEditable(false);
         this.setLocationRelativeTo(null);
     }
     private void regresarMenu(){
@@ -81,8 +84,8 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
     }
     /**
      * Método para mostrar un mensaje en un JOptionPane.
-     * @param mensaje
-     * @param titulo 
+     * @param mensaje Mensaje a mostrar.
+     * @param titulo Titulo de JOPtionPane.
      */
     public void mostrarMensaje(String mensaje, String titulo) {
     UIManager.put("OptionPane.background", new ColorUIResource(20,174,92));
@@ -98,8 +101,12 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         Residuo residuo = (Residuo) evt.getItem();
         txtUnidadMedida.setText(residuo.getUnidadMedida().toString());
     }
-    public OrdenTraslado extraerDatos()
-    {
+    
+    public void asignarDistancia(java.awt.event.ItemEvent evt){
+        Destino distancia = (Destino)evt.getItem();
+        txtKM.setText(distancia.getDistancia()+"");
+    }
+    public OrdenTraslado extraerDatos(){
         Residuo residuo = (Residuo) cbxResiduos.getSelectedItem();
         int cantidad = Integer.parseInt(txtCantidad.getText());
         LocalDateTime fechaOrden = LocalDateTime.now();
@@ -109,6 +116,24 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         OrdenTraslado orden2 = new OrdenTraslado("2dsad", fechaOrden, fechaLimite, cantidad, residuo.getId(), destino.getId(), productor.getId(), precio);
         OrdenTraslado orden = new OrdenTraslado("Neutralizar", fechaOrden, fechaLimite, cantidad, residuo.getId(), destino.getId(), productor.getId(), precio);
         return orden;
+    }
+    private boolean esAlgunCampoVacio(){
+        return     txtCantidad.getText().isEmpty() 
+                || txtKM.getText().isEmpty() 
+                || txtPresupuesto.getText().isEmpty() 
+                || txtUnidadMedida.getText().isEmpty() 
+                || dpFechaTraslado.getText().isEmpty();
+    }
+    /**
+     * Método que configura el date picker para que tenga un rango de selección
+     * de fechas.
+     */
+    private void configurarDatePicker() {
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate minFecha = LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), fechaActual.getDayOfMonth());
+        dpFechaTraslado.getSettings().setDateRangeLimits(minFecha, LocalDate.MAX);
+        dpFechaTraslado.getComponentDateTextField().setEnabled(false);
+        dpFechaTraslado.getComponentDateTextField().setEnabled(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -136,8 +161,10 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         dpFechaTraslado = new com.github.lgooddatepicker.components.DatePicker();
         lblDestino = new javax.swing.JLabel();
         cbxDestinos = new javax.swing.JComboBox<>();
-        lblPresupuesto = new javax.swing.JLabel();
+        lblKM = new javax.swing.JLabel();
         txtPresupuesto = new javax.swing.JTextField();
+        lblPresupuesto1 = new javax.swing.JLabel();
+        txtKM = new javax.swing.JTextField();
         lblInformacionSolicitud = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -253,30 +280,41 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 btnSolicitarActionPerformed(evt);
             }
         });
-        jplFondoGeneral.add(btnSolicitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, 70, 30));
+        jplFondoGeneral.add(btnSolicitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 70, 30));
 
-        btnVolver.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.setBorder(null);
+        btnVolver.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
-        jplFondoGeneral.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 80, 30));
+        jplFondoGeneral.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 80, 30));
 
         jplFondo2.setBackground(new java.awt.Color(175, 244, 198));
 
         lblFechaTraslado.setText("Fecha del traslado");
         lblFechaTraslado.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
 
+        dpFechaTraslado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                dpFechaTrasladoKeyTyped(evt);
+            }
+        });
+
         lblDestino.setText("Destino");
         lblDestino.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
 
         cbxDestinos.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        cbxDestinos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxDestinosItemStateChanged(evt);
+            }
+        });
 
-        lblPresupuesto.setText("Presupuesto base");
-        lblPresupuesto.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
+        lblKM.setText("Cantidad de KM");
+        lblKM.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
 
         txtPresupuesto.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         txtPresupuesto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -285,6 +323,9 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
             }
         });
 
+        lblPresupuesto1.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
+        lblPresupuesto1.setText("Presupuesto base");
+
         javax.swing.GroupLayout jplFondo2Layout = new javax.swing.GroupLayout(jplFondo2);
         jplFondo2.setLayout(jplFondo2Layout);
         jplFondo2Layout.setHorizontalGroup(
@@ -292,15 +333,21 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
             .addGroup(jplFondo2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFechaTraslado)
-                    .addComponent(lblDestino)
-                    .addComponent(lblPresupuesto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbxDestinos, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dpFechaTraslado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(txtPresupuesto))
-                .addContainerGap())
+                    .addGroup(jplFondo2Layout.createSequentialGroup()
+                        .addComponent(lblFechaTraslado)
+                        .addGap(49, 49, 49)
+                        .addComponent(dpFechaTraslado, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
+                    .addGroup(jplFondo2Layout.createSequentialGroup()
+                        .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDestino)
+                            .addComponent(lblPresupuesto1)
+                            .addComponent(lblKM))
+                        .addGap(54, 54, 54)
+                        .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPresupuesto)
+                            .addComponent(cbxDestinos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtKM))))
+                .addGap(18, 18, 18))
         );
         jplFondo2Layout.setVerticalGroup(
             jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,16 +361,20 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                     .addComponent(lblDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxDestinos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblKM, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPresupuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPresupuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(lblPresupuesto1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        jplFondoGeneral.add(jplFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 420, 120));
+        jplFondoGeneral.add(jplFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 420, 140));
 
-        lblInformacionSolicitud.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblInformacionSolicitud.setText("Información de solicitud");
+        lblInformacionSolicitud.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         jplFondoGeneral.add(lblInformacionSolicitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 220, 23));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -334,21 +385,24 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jplFondoGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+            .addComponent(jplFondoGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
-       
-        //mostrarMensaje("Registro realizado.","Éxito");
-        if(controlAplicacion.registrarOrdenTraslado(extraerDatos())!= null)
-        {
-            mostrarMensaje("Registro éxitoso","éxito");
-            regresarMenu();
+        if (esAlgunCampoVacio()) {
+            JOptionPane.showMessageDialog(null, "No deje ningún campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            //mostrarMensaje("Registro realizado.","Éxito");
+            if (controlAplicacion.registrarOrdenTraslado(extraerDatos()) != null) {
+                mostrarMensaje("Registro éxitoso", "éxito");
+                regresarMenu();
+            }
         }
-       
+
+
     }//GEN-LAST:event_btnSolicitarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -371,6 +425,14 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         asignarUnidad(evt);
     }//GEN-LAST:event_cbxResiduosItemStateChanged
 
+    private void cbxDestinosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxDestinosItemStateChanged
+        asignarDistancia(evt);
+    }//GEN-LAST:event_cbxDestinosItemStateChanged
+
+    private void dpFechaTrasladoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dpFechaTrasladoKeyTyped
+        evt.consume();
+    }//GEN-LAST:event_dpFechaTrasladoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSolicitar;
@@ -387,10 +449,12 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
     private javax.swing.JLabel lblDestino;
     private javax.swing.JLabel lblFechaTraslado;
     private javax.swing.JLabel lblInformacionSolicitud;
-    private javax.swing.JLabel lblPresupuesto;
+    private javax.swing.JLabel lblKM;
+    private javax.swing.JLabel lblPresupuesto1;
     private javax.swing.JLabel lblResiduoTrasladar;
     private javax.swing.JLabel lblUnidadDeMedida;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtKM;
     private javax.swing.JTextField txtPresupuesto;
     private javax.swing.JTextField txtUnidadMedida;
     // End of variables declaration//GEN-END:variables

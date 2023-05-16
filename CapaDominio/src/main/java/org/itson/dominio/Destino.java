@@ -238,7 +238,7 @@ public class Destino {
      */
     @Override
     public String toString() {
-        return "Destino{" + "id=" + id + ", nombre=" + nombre + ", pais=" + pais + ", estado=" + estado + ", ciudad=" + ciudad + ", colonia=" + colonia + ", calle=" + calle + ", numero_casa=" + numero_casa + ", distancia=" + distancia + '}';
+        return nombre + ", "+pais + ", " + estado + ", " + ciudad + ", " + colonia + ", " + calle + ", " + numero_casa;
     }
     
     
