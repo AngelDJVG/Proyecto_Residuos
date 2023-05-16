@@ -5,9 +5,11 @@ package org.itson.daos;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.*;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.itson.dominio.OrdenTraslado;
@@ -76,4 +78,56 @@ public class OrdenTrasladoDAO extends DAOGeneral<OrdenTraslado> {
         return entidad;
     }
 
+    public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor){
+        MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
+        GregorianCalendar hoy = new GregorianCalendar();
+        Calendar hoyInicio = Calendar.getInstance();
+        Calendar hoyFin = Calendar.getInstance();
+        hoyInicio.set(hoy.get(GregorianCalendar.YEAR), GregorianCalendar.MONTH, GregorianCalendar.DAY_OF_MONTH, 0, 0, 0);
+        hoyFin.set(hoy.get(GregorianCalendar.YEAR), GregorianCalendar.MONTH, GregorianCalendar.DAY_OF_MONTH, 0, 0, 0);
+        hoyFin.add(Calendar.DAY_OF_MONTH, 1);
+
+        List<OrdenTraslado> ordenesTraslado = new LinkedList<>();
+
+        coleccion.find(and(
+                eq("idProductor",idProductor),
+                and(
+                        gte("fecha_creacion", hoyInicio), 
+                        lt("fecha_creacion", hoyFin
+                        )
+                )
+        )).into(ordenesTraslado);
+
+        return ordenesTraslado;
+    }
+    
+    /**
+     * Consulta las ordenes de traslado de un residuo realizadas por un productor.
+     * @param idResiduo Es el residuo que se buscará.
+     * @return Regresa la lista de ordenes de traslados de un residuo realizadas el día de hoy. 
+     */
+    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo){
+        MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
+        
+        GregorianCalendar hoy = new GregorianCalendar();
+        Calendar hoyInicio = Calendar.getInstance();
+        Calendar hoyFin = Calendar.getInstance();
+        hoyInicio.set(hoy.get(GregorianCalendar.YEAR), GregorianCalendar.MONTH, GregorianCalendar.DAY_OF_MONTH, 0, 0, 0);
+        hoyFin.set(hoy.get(GregorianCalendar.YEAR), GregorianCalendar.MONTH, GregorianCalendar.DAY_OF_MONTH, 0, 0, 0);
+        hoyFin.add(Calendar.DAY_OF_MONTH, 1);
+        
+        List<OrdenTraslado> ordenesTraslado = new LinkedList<>();
+        
+        coleccion.find(and(
+                eq("idResiduo",idResiduo),
+                and(
+                        gte("fecha_creacion", hoyInicio), 
+                        lt("fecha_creacion", hoyFin
+                        )
+                )
+        )).into(ordenesTraslado);
+        
+        return ordenesTraslado;
+    }
+    
 }

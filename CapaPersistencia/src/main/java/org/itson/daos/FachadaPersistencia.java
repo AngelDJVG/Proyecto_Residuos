@@ -156,6 +156,22 @@ public class FachadaPersistencia implements IPersistencia {
     public Productor agregarProductorPredeterminado() {
         return productorDAO.agregarProductorPredeterminado();
     }
+
+    @Override
+    public void agregarTransportistasPredeterminados() {
+        transportistaDAO.agregarPredeterminados();
+    }
+
+    @Override
+    public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor) {
+        return ordenTrasladoDAO.consultarOrdenesTrasladoProductor(idProductor);
+    }
+
+    @Override
+    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo) {
+        return ordenTrasladoDAO.consultarOrdenTrasladoResiduo(idResiduo);
+    }
+    
     
 }
 

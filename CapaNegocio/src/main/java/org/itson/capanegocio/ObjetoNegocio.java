@@ -7,6 +7,7 @@ package org.itson.capanegocio;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.itson.dominio.Destino;
+import org.itson.dominio.OrdenTraslado;
 import org.itson.dominio.Productor;
 import org.itson.dominio.Residuo;
 import org.itson.interfaz.INegocios;
@@ -18,10 +19,12 @@ import org.itson.interfaz.INegocios;
 public class ObjetoNegocio implements INegocios{
     ControlProductor controlProductor;
     ControlTransportista controlTransportista;
+    ControlOrdenTraslado controlOrdenesTraslado;
     
     public ObjetoNegocio(){
         controlProductor = new ControlProductor();
         controlTransportista = new ControlTransportista();
+        controlOrdenesTraslado = new ControlOrdenTraslado();
         
     }
     @Override
@@ -51,6 +54,41 @@ public class ObjetoNegocio implements INegocios{
     @Override
     public Productor agregarProductorPredeterminado() {
         return controlProductor.agregarProductorPredeterminado();
+    }
+
+    @Override
+    public void agregarTransportistasPredeterminados() {
+        controlTransportista.agregarTransportistasPredeterminados();
+    }
+
+    @Override
+    public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor) {
+        return controlOrdenesTraslado.consultarOrdenesTrasladoProductor(idProductor);
+    }
+
+    @Override
+    public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo) {
+        return controlOrdenesTraslado.consultarOrdenTrasladoResiduo(idResiduo);
+    }
+
+    @Override
+    public OrdenTraslado consultarOrdenTraslado(ObjectId id) {
+        return controlOrdenesTraslado.consultarOrdenTraslado(id);
+    }
+
+    @Override
+    public List consultarTodosOrdenTraslado() {
+        return controlOrdenesTraslado.consultarTodosOrdenTraslado();
+    }
+
+    @Override
+    public OrdenTraslado agregarOrdenTraslado(OrdenTraslado entidad) {
+        return controlOrdenesTraslado.agregarOrdenTraslado(entidad);
+    }
+
+    @Override
+    public OrdenTraslado actualizarOrdenTraslado(OrdenTraslado entidad) {
+        return controlOrdenesTraslado.actualizarOrdenTraslado(entidad);
     }
    
     

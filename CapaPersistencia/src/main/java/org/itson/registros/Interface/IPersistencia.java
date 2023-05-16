@@ -118,4 +118,7 @@ public interface IPersistencia {
     public List<Residuo> consultarListaResiduosProductor(ObjectId id);
      public Productor consultarProductorPredeterminado();
      public Productor agregarProductorPredeterminado();
+     public void agregarTransportistasPredeterminados();
+     public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor);
+     public List<OrdenTraslado> consultarOrdenTrasladoResiduo(ObjectId idResiduo);
 }

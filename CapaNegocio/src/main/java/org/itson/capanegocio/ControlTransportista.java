@@ -22,4 +22,8 @@ public class ControlTransportista {
     public List<String> consultarListaCorreosTransportistas(){
         return fachadaPersistencia.consultarListaCorreosTransportistas();
     }
+    
+    public void agregarTransportistasPredeterminados(){
+        fachadaPersistencia.agregarTransportistasPredeterminados();
+    }
 }
