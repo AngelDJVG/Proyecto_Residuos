@@ -13,7 +13,7 @@ import org.itson.capaaplicacion.FrmMenu;
  * Gabriel Alberto Mancinas Cota
  * Ángel de Jesús Valenzuela García
  */
-public class IniciAplicacion {
+public class InicioAplicacion {
 
     /**
      * @param args the command line arguments

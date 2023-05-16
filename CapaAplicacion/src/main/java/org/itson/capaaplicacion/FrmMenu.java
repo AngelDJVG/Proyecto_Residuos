@@ -4,7 +4,6 @@
 package org.itson.capaaplicacion;
 
 import java.awt.Frame;
-import org.itson.capanegocio.ObjetoNegocio;
 import org.itson.control.ControlAplicacion;
 
 /**

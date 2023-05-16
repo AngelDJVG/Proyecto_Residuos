@@ -19,7 +19,6 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.basic.BasicOptionPaneUI;
 import org.bson.types.ObjectId;
-import org.itson.capanegocio.ObjetoNegocio;
 import org.itson.control.ControlAplicacion;
 import org.itson.dominio.Productor;
 import org.itson.dominio.Residuo;

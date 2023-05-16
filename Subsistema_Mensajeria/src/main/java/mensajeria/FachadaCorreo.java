@@ -3,6 +3,7 @@ package mensajeria;
 import java.util.List;
 import org.itson.daos.FachadaPersistencia;
 
+
 /**
  * Fachada del mecanismo de mensajería por correo.
  * @author Equipo 3 - Diseño de Software.
@@ -37,7 +38,7 @@ public class FachadaCorreo implements IMensajeria{
      */
     @Override
     public boolean enviarNotificacion(String asunto, String contenido) {
-        List<String> destinatarios = fachadaDAO.consultarCorreosTransportistas();
+        List<String> destinatarios = fachadaDAO.consultarListaCorreosTransportistas();
         return fachadaMensajeria.enviarNotificacion(destinatarios, asunto, contenido);
     }
 }

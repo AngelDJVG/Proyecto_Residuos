@@ -1,4 +1,3 @@
-mensajeria\EmailNotifier.class
 mensajeria\FachadaCorreo.class
+mensajeria\EmailNotifier.class
 mensajeria\IMensajeria.class
-pruebas\Pruebas.class
