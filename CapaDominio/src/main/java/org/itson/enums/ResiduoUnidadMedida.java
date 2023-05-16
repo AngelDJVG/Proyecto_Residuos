@@ -1,7 +1,7 @@
 /**
  * Clase ResiduoUnidadMedida.java creado el 13/05/2023.
  */
-package org.itson.dominio;
+package org.itson.enums;
 
 /**
  * Clase Enum ResiduoUnidadMedida
