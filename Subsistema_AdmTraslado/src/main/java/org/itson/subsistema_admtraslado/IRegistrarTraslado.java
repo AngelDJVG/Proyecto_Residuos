@@ -7,7 +7,7 @@ import org.itson.dominio.OrdenTraslado;
 import org.itson.excepciones.PersistenciaException;
 
 /**
- * 
+ * Interfaz del subsistema de registro de traslados.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla

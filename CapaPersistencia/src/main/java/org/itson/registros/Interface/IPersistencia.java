@@ -8,7 +8,7 @@ import org.bson.types.ObjectId;
 import org.itson.dominio.*;
 
 /**
- *
+ * Interfaz de la persistencia.
  * @author Equipo 3 Luis Pablo Ayón Figueroa Mario Díaz Padilla Gabriel Alberto
  * Mancinas Cota Ángel de Jesús Valenzuela García
  */
@@ -111,12 +111,6 @@ public interface IPersistencia {
      * @return transportista actualizado.
      */
     public Transportista actualizarTransportista(Transportista transportista);
-    /**
-     * Método que elimina un transportista.
-     * @param id id del transportista.
-     * @return transportista eliminado.
-     */
-    public Transportista eliminarTransportista(ObjectId id);
     
     /**
      * Método que regresa una lista de los correos de los transportistas.

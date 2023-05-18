@@ -8,7 +8,7 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
- * 
+ * Esta interfaz sirve para implementar clases DAO.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla

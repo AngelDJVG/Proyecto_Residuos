@@ -9,7 +9,7 @@ import org.itson.excepciones.PersistenciaException;
 import org.itson.registros.Interface.IPersistencia;
 
 /**
- * 
+ * Clase para validar una orden de traslado.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla

@@ -16,6 +16,7 @@ import org.itson.registros.Interface.IConexionBD;
 import org.itson.registros.Interface.IPersistencia;
 
 /**
+ * Esta clase representa la Fachada de Persistencia.
  * @author Equipo 3 Luis Pablo Ayón Figueroa Mario Díaz Padilla Gabriel Alberto
  * Mancinas Cota Ángel de Jesús Valenzuela García
  */
@@ -171,11 +172,6 @@ public class FachadaPersistencia implements IPersistencia {
         return transportistaDAO.actualizar(transportista);
     }
     
-    @Override
-    public Transportista eliminarTransportista(ObjectId id) {
-        //No se ocupa para el caso de uso
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     /**
      * Método que regresa una lista de los correos de los transportistas.
      * @return Lista de correos electrónicos de los transportistas.
@@ -226,6 +222,11 @@ public class FachadaPersistencia implements IPersistencia {
         transportistaDAO.agregarPredeterminados();
     }
 
+    /**
+     * Método que consulta las órdenes de traslado de un productor.
+     * @param idProductor Id del productor.
+     * @return Lista de órdenes de traslado.
+     */
     @Override
     public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor) {
         return ordenTrasladoDAO.consultarOrdenesTrasladoProductor(idProductor);

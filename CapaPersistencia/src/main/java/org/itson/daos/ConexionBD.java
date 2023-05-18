@@ -14,7 +14,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 import org.itson.registros.Interface.IConexionBD;
 
 /**
- * 
+ * Esta clase representa una conexión a la base de datos.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla

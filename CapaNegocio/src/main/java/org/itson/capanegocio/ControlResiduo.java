@@ -10,17 +10,29 @@ import org.itson.dominio.Residuo;
 import org.itson.registros.Interface.IPersistencia;
 
 /**
- *
- * @author mario
+ * Clase para control de acceso a residuos.
+ * @author Equipo 3 
+ * Luis Pablo Ayón Figueroa
+ * Mario Díaz Padilla
+ * Gabriel Alberto Mancinas Cota
+ * Ángel de Jesús Valenzuela García
  */
 public class ControlResiduo {
     
     private IPersistencia fachadaPersistencia;
     
+    /**
+     * Constructor por defecto.
+     */
     public ControlResiduo(){
         fachadaPersistencia = new FachadaPersistencia();
     }
     
+    /**
+     * Método que consulta un residuo a partir de su id.
+     * @param idResiduo El id del residuo a consultar.
+     * @return El residuo consultado en caso de encontrarlo, null en caso contrario.
+     */
     public Residuo consultarResiduo(ObjectId idResiduo){
         return fachadaPersistencia.consultarResiduo(idResiduo);
     }

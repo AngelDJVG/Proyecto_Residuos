@@ -110,7 +110,7 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         Destino destino = (Destino) cbxDestinos.getSelectedItem();
         float precio = Float.parseFloat(txtPresupuesto.getText());
         String tratamiento = txtTratamiento.getText();
-        OrdenTraslado orden2 = new OrdenTraslado("2dsad", fechaOrden, fechaLimite, cantidad, residuo.getId(), destino.getId(), productor.getId(), precio);
+       
         OrdenTraslado orden = new OrdenTraslado(tratamiento, fechaOrden, fechaLimite, cantidad, residuo.getId(), destino.getId(), productor.getId(), precio);
         return orden;
     }

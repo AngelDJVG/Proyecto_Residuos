@@ -168,7 +168,7 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
     
     private void cargarTablaOrdenes(){
         List<OrdenTraslado> datos = controlAplicacion.consultarOrdenesTraslado();
-        System.out.println(datos);
+        
         DefaultTableModel modelo = (DefaultTableModel) tblOrdenesTraslado.getModel();
         modelo.setRowCount(0);
         Residuo residuo;

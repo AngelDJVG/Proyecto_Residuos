@@ -11,21 +11,41 @@ import org.itson.dominio.OrdenTraslado;
 import org.itson.registros.Interface.IPersistencia;
 
 /**
- *
- * @author mario
+ * Clase para control de acceso a ordenes de traslado.
+ * @author Equipo 3 
+ * Luis Pablo Ayón Figueroa
+ * Mario Díaz Padilla
+ * Gabriel Alberto Mancinas Cota
+ * Ángel de Jesús Valenzuela García
  */
 public class ControlOrdenTraslado {
     
     private IPersistencia fachadaPersistencia;
     
+    /**
+     * Constructor por defecto.
+     */
     public ControlOrdenTraslado(){
         fachadaPersistencia = new FachadaPersistencia();
     }
     
+    /**
+     * Método que consulta las órdenes de traslado de un productor.
+     * @param idProductor Id del productor.
+     * @return Lista de órdenes de traslado.
+     */
     public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor) {
         return fachadaPersistencia.consultarOrdenesTrasladoProductor(idProductor);
     }
 
+    /**
+     * Consulta las ordenes de traslado de un residuo realizadas por un
+     * productor.
+     *
+     * @param orden Es la orden que se consultará
+     * @return Regresa la lista de ordenes de traslados de un residuo realizadas
+     * el día de hoy.
+     */
     public List<OrdenTraslado> consultarOrdenTrasladoResiduo(OrdenTraslado orden) {
         return fachadaPersistencia.consultarOrdenTrasladoResiduo(orden);
     }

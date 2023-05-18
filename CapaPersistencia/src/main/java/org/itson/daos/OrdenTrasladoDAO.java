@@ -21,7 +21,7 @@ import org.itson.dominio.OrdenTraslado;
 import org.itson.registros.Interface.IConexionBD;
 
 /**
- *
+ * DAO de Ordenes de Traslado.
  * @author Equipo 3 Luis Pablo Ayón Figueroa Mario Díaz Padilla Gabriel Alberto
  * Mancinas Cota Ángel de Jesús Valenzuela García
  */

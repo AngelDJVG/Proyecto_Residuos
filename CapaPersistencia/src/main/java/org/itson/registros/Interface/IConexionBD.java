@@ -6,6 +6,7 @@ package org.itson.registros.Interface;
 import com.mongodb.client.MongoDatabase;
 
 /**
+ * Interfaz de la conexión a la base de datos.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla

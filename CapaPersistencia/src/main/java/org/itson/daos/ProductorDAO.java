@@ -20,7 +20,7 @@ import org.itson.enums.ResiduoUnidadMedida;
 import org.itson.registros.Interface.IConexionBD;
 
 /**
- * 
+ * DAO de Productores.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla

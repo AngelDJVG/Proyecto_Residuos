@@ -4,7 +4,7 @@
 package org.itson.excepciones;
 
 /**
- *
+ * Esta clase se utiliza para excepciones en la capa de persistencia.
  * @author Equipo 3 Luis Pablo Ayón Figueroa Mario Díaz Padilla Gabriel Alberto
  * Mancinas Cota Ángel de Jesús Valenzuela García
  */

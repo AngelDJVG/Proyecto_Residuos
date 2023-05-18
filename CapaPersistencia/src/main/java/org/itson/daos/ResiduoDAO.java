@@ -14,7 +14,7 @@ import org.itson.dominio.Residuo;
 import org.itson.registros.Interface.IConexionBD;
 
 /**
- * 
+ * DAO de Residuos.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla

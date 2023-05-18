@@ -11,7 +11,7 @@ import org.itson.excepciones.PersistenciaException;
 import org.itson.registros.Interface.IPersistencia;
 
 /**
- * 
+ * Fachada del subsistema de registro de traslados.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla

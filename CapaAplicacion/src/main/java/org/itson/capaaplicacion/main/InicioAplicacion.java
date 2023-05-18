@@ -6,7 +6,7 @@ package org.itson.capaaplicacion.main;
 import org.itson.capaaplicacion.FrmMenu;
 
 /**
- * 
+ * Clase main de la aplicación.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla

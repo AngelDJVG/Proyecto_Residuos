@@ -15,7 +15,6 @@ import org.bson.types.ObjectId;
  * Gabriel Alberto Mancinas Cota
  * Ángel de Jesús Valenzuela García
  */
- 
 public class ConstituyenteQuimico {
     
     private ObjectId id;

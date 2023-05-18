@@ -14,7 +14,7 @@ import org.itson.dominio.Transportista;
 import org.itson.registros.Interface.IConexionBD;
 
 /**
- *
+ * DAO de Transportistas.
  * @author Equipo 3 Luis Pablo Ayón Figueroa Mario Díaz Padilla Gabriel Alberto
  * Mancinas Cota Ángel de Jesús Valenzuela García
  */

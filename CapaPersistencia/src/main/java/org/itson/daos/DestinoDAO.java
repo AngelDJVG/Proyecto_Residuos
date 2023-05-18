@@ -12,7 +12,7 @@ import org.itson.dominio.Productor;
 import org.itson.registros.Interface.IConexionBD;
 
 /**
- * 
+ * DAO de Destinos.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla
