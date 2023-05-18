@@ -3,7 +3,6 @@
  */
 package org.itson.capaaplicacion;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -13,7 +12,7 @@ import org.itson.dominio.OrdenTraslado;
 import org.itson.dominio.Residuo;
 
 /**
- * 
+ * Esta clase se encarga de simular el ver ordenes traslado de la aplicación.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla
@@ -23,8 +22,9 @@ import org.itson.dominio.Residuo;
 public class FrmVerOrdenes extends javax.swing.JFrame {
 
     ControlAplicacion controlAplicacion;
+   
     /**
-     * Creates new form FrmVerOrdenes
+     * Método constructor que inicializa el frame.
      */
     public FrmVerOrdenes() {
         initComponents();
@@ -32,6 +32,9 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cargarTablaOrdenes();
     }
+    /**
+     * Método que cierra el frame y te manda al frame del menú.
+     */
     private void regresarMenu(){
         FrmMenu frm = new FrmMenu();
         frm.setVisible(true);
@@ -158,14 +161,27 @@ public class FrmVerOrdenes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona el botón de salir.
+     * Manda a llamar un método para regresar al salir.
+     * @param evt El objeto ActionEvent que representa el evento del botón de salir.
+     */
     private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
        regresarMenu();
     }//GEN-LAST:event_btnSalir1ActionPerformed
-
+    
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona el botón de salir.
+     * Manda a llamar un método para regresar al salir.
+     * @param evt El objeto ActionEvent que representa el evento del botón de salir.
+     */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
     
+    /**
+     * Este método carga la tabla de las ordenes de traslado.
+     */
     private void cargarTablaOrdenes(){
         List<OrdenTraslado> datos = controlAplicacion.consultarOrdenesTraslado();
         

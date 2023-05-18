@@ -9,8 +9,6 @@ import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -24,7 +22,7 @@ import org.itson.dominio.Residuo;
 import org.itson.excepciones.PersistenciaException;
 
 /**
- * 
+ * Esta clase se encarga de simular el registrar traslado de la aplicación.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla
@@ -34,8 +32,10 @@ import org.itson.excepciones.PersistenciaException;
 public class FrmRegistrarTraslado extends javax.swing.JFrame {
     ControlAplicacion controlAplicacion;
     private Productor productor;
+    
     /**
-     * Creates new form Menu
+     * Método constructor que inicializa el frame.
+     * @param controlAplicacion parámetro que controla la aplicación.
      */
     public FrmRegistrarTraslado(ControlAplicacion controlAplicacion) {
         initComponents();
@@ -47,6 +47,10 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         txtKM.setEditable(false);
         this.setLocationRelativeTo(null);
     }
+    
+    /**
+     * Método que cierra el frame y te manda al frame del menú.
+     */
     private void regresarMenu(){
         FrmMenu frm = new FrmMenu();
         frm.setVisible(true);
@@ -98,10 +102,19 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         txtUnidadMedida.setText(residuo.getUnidadMedida().toString());
     }
     
+    /**
+     * Método de evento que inserta la distancia al campo de texto del destino que se elige en el combobox.
+     * @param evt El objeto ItemEvent que representa el evento del combobox del destino.
+     */
     public void asignarDistancia(java.awt.event.ItemEvent evt){
         Destino distancia = (Destino)evt.getItem();
         txtKM.setText(distancia.getDistancia()+"");
     }
+    
+    /**
+     * Método que extrae los datos del formulario para crear la orden de traslado.
+     * @return Orden de traslado.
+     */
     public OrdenTraslado extraerDatos(){
         Residuo residuo = (Residuo) cbxResiduos.getSelectedItem();
         float cantidad = Float.parseFloat(txtCantidad.getText());
@@ -114,6 +127,11 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         OrdenTraslado orden = new OrdenTraslado(tratamiento, fechaOrden, fechaLimite, cantidad, residuo.getId(), destino.getId(), productor.getId(), precio);
         return orden;
     }
+    
+    /**
+     * Método que valida si algún campo del formulario está vacio.
+     * @return Verdadero si hay algún campo vacio, falso en caso contrario.
+     */
     private boolean esAlgunCampoVacio(){
         return     txtCantidad.getText().isEmpty() 
                 || txtKM.getText().isEmpty() 
@@ -122,6 +140,7 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 || dpFechaTraslado.getText().isEmpty()
                 ||  txtTratamiento.getText().isEmpty();
     }
+    
     /**
      * Método que configura el date picker para que tenga un rango de selección
      * de fechas.
@@ -216,11 +235,6 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 cbxResiduosItemStateChanged(evt);
             }
         });
-        cbxResiduos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxResiduosActionPerformed(evt);
-            }
-        });
 
         txtCantidad.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -313,11 +327,6 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 cbxDestinosItemStateChanged(evt);
             }
         });
-        cbxDestinos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxDestinosActionPerformed(evt);
-            }
-        });
 
         lblKM.setText("Cantidad de KM");
         lblKM.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
@@ -332,8 +341,8 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         lblPresupuesto1.setText("Presupuesto base");
         lblPresupuesto1.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
 
-        lblTratamiento.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblTratamiento.setText("Tratamiento");
+        lblTratamiento.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
 
         txtTratamiento.setColumns(20);
         txtTratamiento.setRows(5);
@@ -422,6 +431,11 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona el botón de solicitar.
+     * Valida genera el orden de traslado.
+     * @param evt El objeto ActionEvent que representa el evento del botón de solicitar.
+     */
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
         if (esAlgunCampoVacio()) {
             JOptionPane.showMessageDialog(null, "No deje ningún campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
@@ -438,48 +452,71 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 this.mostrarMensaje(ex.getMessage(), "info");
             }
         }
-
-
     }//GEN-LAST:event_btnSolicitarActionPerformed
 
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona el botón de volver.
+     * Manda a llamar un método para regresar al menú.
+     * @param evt El objeto ActionEvent que representa el evento del botón de volver.
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         regresarMenu();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona teclas.
+     * Manda a llamar un método para validar el campo de texto.
+     * @param evt El objeto KeyTyped que valida la escritura.
+     */
     private void txtPresupuestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresupuestoKeyTyped
        validarNumeros(evt,txtPresupuesto);
     }//GEN-LAST:event_txtPresupuestoKeyTyped
 
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona teclas.
+     * Manda a llamar un método para validar el campo de texto.
+     * @param evt El objeto KeyTyped que valida la escritura.
+     */
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
       validarNumeros(evt,txtCantidad);
     }//GEN-LAST:event_txtCantidadKeyTyped
 
-    private void cbxResiduosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxResiduosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxResiduosActionPerformed
-
+    /**
+     * Método de evento que actualiza el campo de texto de unidad de medida del valor que se elige en el combobox.
+     * @param evt El objeto ItemEvent que representa el evento del combobox.
+     */
     private void cbxResiduosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxResiduosItemStateChanged
         asignarUnidad(evt);
     }//GEN-LAST:event_cbxResiduosItemStateChanged
 
-    private void cbxDestinosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxDestinosItemStateChanged
-        asignarDistancia(evt);
-    }//GEN-LAST:event_cbxDestinosItemStateChanged
-
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona teclas.
+     * Manda a llamar un método para validar el campo de texto.
+     * @param evt El objeto KeyTyped que valida la escritura.
+     */
     private void dpFechaTrasladoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dpFechaTrasladoKeyTyped
         evt.consume();
     }//GEN-LAST:event_dpFechaTrasladoKeyTyped
 
-    private void cbxDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDestinosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxDestinosActionPerformed
-
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona teclas.
+     * Manda a llamar un método para validar el campo de texto.
+     * @param evt El objeto KeyTyped que valida la escritura.
+     */
     private void txtTratamientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTratamientoKeyTyped
         char c = evt.getKeyChar();
         if (txtTratamiento.getText().length() >= 100 || !Character.isLetterOrDigit(c) && c != ',' && c != '.' && !Character.isWhitespace(c)) {
             evt.consume(); // Ignorar el evento si se alcanzó el límite de 100 caracteres o el carácter no es válido
         }
     }//GEN-LAST:event_txtTratamientoKeyTyped
+
+    /**
+     * Método de evento que actualiza el campo de texto de distancia del valor que se elige en el combobox.
+     * @param evt El objeto ItemEvent que representa el evento del combobox.
+     */
+    private void cbxDestinosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxDestinosItemStateChanged
+        asignarDistancia(evt);
+    }//GEN-LAST:event_cbxDestinosItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,7 +6,7 @@ package org.itson.capaaplicacion;
 import org.itson.control.ControlAplicacion;
 
 /**
- * 
+ * Esta clase se encarga de simular el menú de la aplicación.
  * @author Equipo 3 
  * Luis Pablo Ayón Figueroa
  * Mario Díaz Padilla
@@ -14,9 +14,11 @@ import org.itson.control.ControlAplicacion;
  * Ángel de Jesús Valenzuela García
  */
 public class FrmMenu extends javax.swing.JFrame {
+
     ControlAplicacion controlAplicacion;
+    
     /**
-     * Creates new form Menu
+     * Método constructor que inicializa el frame.
      */
     public FrmMenu() {
         initComponents();
@@ -25,11 +27,18 @@ public class FrmMenu extends javax.swing.JFrame {
         this.btnVerOfertas.setEnabled(false);
     }
     
+    /**
+     * Método que abre la ventana para registrar una orden de traslado.
+     */
     private void abrirVentanaRegistrarTraslado(){
         FrmRegistrarTraslado frm = new FrmRegistrarTraslado(controlAplicacion);
         frm.setVisible(true);
         this.setVisible(false);
     }
+    
+    /**
+     * Método que abre la ventana para ver las ordenes de traslado.
+     */
     private void abrirVentanaVerOrdenes(){
         FrmVerOrdenes frm = new FrmVerOrdenes();
         frm.setVisible(true);
@@ -161,14 +170,28 @@ public class FrmMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona el botón de salir.
+     * @param evt El objeto ActionEvent que representa el evento del botón de salir.
+     */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
       System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona el botón de registrar traslado.
+     * Llama un método para abrir la ventana de registrar traslado.
+     * @param evt El objeto ActionEvent que representa el evento del botón de registrar traslado.
+     */
     private void btnRegistrarTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTrasladoActionPerformed
       abrirVentanaRegistrarTraslado();
     }//GEN-LAST:event_btnRegistrarTrasladoActionPerformed
 
+    /**
+     * Método de evento que se ejecuta cuando el usuario presiona el botón de ver ordenes de traslado.
+     * Llama un método para abrir la ventana de ver ordenes de traslado.
+     * @param evt El objeto ActionEvent que representa el evento del botón de ver ordenes de traslado.
+     */
     private void btnOrdenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenesActionPerformed
         abrirVentanaVerOrdenes();
     }//GEN-LAST:event_btnOrdenesActionPerformed
