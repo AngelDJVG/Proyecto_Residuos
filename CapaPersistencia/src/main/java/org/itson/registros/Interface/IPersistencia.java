@@ -33,31 +33,31 @@ public interface IPersistencia {
     /**
      * Método que agrega una orden de traslado.
      *
-     * @param entidad Orden de traslado.
+     * @param ordenTraslado Orden de traslado.
      * @return orden de traslado.
      */
-    public OrdenTraslado agregarOrdenTraslado(OrdenTraslado entidad);
+    public OrdenTraslado agregarOrdenTraslado(OrdenTraslado ordenTraslado);
 
     /**
      * Método que actualiza una orden de traslado.
      *
-     * @param entidad orden de traslado.
+     * @param ordenTraslado orden de traslado.
      * @return orden de traslado.
      */
-    public OrdenTraslado actualizarOrdenTraslado(OrdenTraslado entidad);
+    public OrdenTraslado actualizarOrdenTraslado(OrdenTraslado ordenTraslado);
     /**
      * Método que elimina una orden de traslado.
-     * @param id id de orden de traslado a eliminar.
-     * @return orden de traslado eliminada.
+     * @param idTransportista id de orden de traslado a eliminar.
+     * @return Valor booleano, true si se eliminó, false en caso contrario.
      */
-    public OrdenTraslado eliminarOrdenTraslado(ObjectId id);
+    public Boolean eliminarOrdenTraslado(ObjectId idTransportista);
     
     /**
      * Método que consulta un productor.
-     * @param id id del productor a consultar.
+     * @param idProductor id del productor a consultar.
      * @return Productor encontrado.
      */
-    public Productor consultarProductor(ObjectId id);
+    public Productor consultarProductor(ObjectId idProductor);
     /**
      * Método que consulta todos los productores.
      * @return Una lista con todos los productores.
@@ -65,24 +65,29 @@ public interface IPersistencia {
     public List<Productor> consultarTodosProductor();
     /**
      * Método que agrega un productor.
-     * @param entidad Productor a agregar.
+     * @param productor Productor a agregar.
      * @return Productor agregado.
      */
-    public Productor agregarProductor(Productor entidad);
+    public Productor agregarProductor(Productor productor);
     /**
      * Método que actualiza un productor.
-     * @param entidad productor a actualizar.
+     * @param productor productor a actualizar.
      * @return productor actualizado.
      */
-    public Productor actualizarProductor(Productor entidad);
+    public Productor actualizarProductor(Productor productor);
     /**
      * Método que elimina un productor.
      * @param id Id del productor a eliminar.
      * @return productor eliminado.
      */
-    public Productor eliminarProductor(ObjectId id);
     
-  
+    /**
+     * Método que elimina un productor.
+     * @param idProductor Id del productor.
+     * @return Valor booleano, true si se eliminó, false en caso contrario.
+     */
+    public Boolean eliminarProductor(ObjectId idProductor);
+    
     /**
      * Método que consulta un transportista por id.
      * @param id id del transportista.
@@ -96,16 +101,16 @@ public interface IPersistencia {
     public List<Transportista> consultarTodosTransportistas();
     /**
      * Método que agrega un transportista.
-     * @param entidad transportista a agregar.
+     * @param transportista transportista a agregar.
      * @return transportista agregado.
      */
-    public Transportista agregarTransportista(Transportista entidad);
+    public Transportista agregarTransportista(Transportista transportista);
     /**
      * Método que actualizar un transportista.
-     * @param entidad transportista a actualizar.
+     * @param transportista transportista a actualizar.
      * @return transportista actualizado.
      */
-    public Transportista actualizarTransportista(Transportista entidad);
+    public Transportista actualizarTransportista(Transportista transportista);
     /**
      * Método que elimina un transportista.
      * @param id id del transportista.
@@ -113,15 +118,62 @@ public interface IPersistencia {
      */
     public Transportista eliminarTransportista(ObjectId id);
     
-    
+    /**
+     * Método que regresa una lista de los correos de los transportistas.
+     * @return Lista de correos electrónicos de los transportistas.
+     */
     public List<String> consultarListaCorreosTransportistas();
+    /**
+     * Método que consulta la lista de destinos del productor.
+     * @param idProductor Id del productor.
+     * @return Lista de destinos del productor.
+     */
     public List<Destino> consultarListaDestinosProcutor(ObjectId idProductor);
-    public List<Residuo> consultarListaResiduosProductor(ObjectId id);
+     /**
+     * Método que regresa una lista de residuos de un productor en específico.
+     * @param idProductor Id del productor.
+     * @return Lista de residuos del productor.
+     */
+    public List<Residuo> consultarListaResiduosProductor(ObjectId idProductor);
+    /**
+     * Método que consulta el productor predeterminado registrado.
+     * @return Productor predeterminado.
+     */
      public Productor consultarProductorPredeterminado();
+     /**
+     * Método que agrega un productor a la base de datos.
+     * @return Productor registrado.
+     */
      public Productor agregarProductorPredeterminado();
+     /**
+     * Método para agregar transportistas determinados.
+     */
      public void agregarTransportistasPredeterminados();
+    /**
+     * Método que consulta las órdenes de traslado de un productor.
+     * @param idProductor Id del productor.
+     * @return Lista de órdenes de traslado.
+     */
      public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor);
+     /**
+     * Consulta las ordenes de traslado de un residuo realizadas por un
+     * productor.
+     *
+     * @param orden Es la orden que se consultará
+     * @return Regresa la lista de ordenes de traslados de un residuo realizadas
+     * el día de hoy.
+     */
      public List<OrdenTraslado> consultarOrdenTrasladoResiduo(OrdenTraslado orden);
+     /**
+     * Método que consulta un residuo a partir de su id.
+     * @param idResiduo Id del residuo.
+     * @return Residuo encontrado, null en caso contrario.
+     */
      public Residuo consultarResiduo(ObjectId idResiduo);
+     /**
+     * Método para consultar un destino según la id enviada como parámetro.
+     * @param idDestino Id del destino.
+     * @return Destino consultado, null si no se encuentra.
+     */
      public Destino consultarDestino(ObjectId idDestino);
 }

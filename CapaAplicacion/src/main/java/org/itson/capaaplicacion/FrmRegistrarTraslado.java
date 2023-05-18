@@ -109,8 +109,9 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         LocalDateTime fechaLimite = LocalDateTime.of(dpFechaTraslado.getDate(), LocalTime.MIN);
         Destino destino = (Destino) cbxDestinos.getSelectedItem();
         float precio = Float.parseFloat(txtPresupuesto.getText());
+        String tratamiento = txtTratamiento.getText();
         OrdenTraslado orden2 = new OrdenTraslado("2dsad", fechaOrden, fechaLimite, cantidad, residuo.getId(), destino.getId(), productor.getId(), precio);
-        OrdenTraslado orden = new OrdenTraslado("Neutralizar", fechaOrden, fechaLimite, cantidad, residuo.getId(), destino.getId(), productor.getId(), precio);
+        OrdenTraslado orden = new OrdenTraslado(tratamiento, fechaOrden, fechaLimite, cantidad, residuo.getId(), destino.getId(), productor.getId(), precio);
         return orden;
     }
     private boolean esAlgunCampoVacio(){
@@ -118,7 +119,8 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 || txtKM.getText().isEmpty() 
                 || txtPresupuesto.getText().isEmpty() 
                 || txtUnidadMedida.getText().isEmpty() 
-                || dpFechaTraslado.getText().isEmpty();
+                || dpFechaTraslado.getText().isEmpty()
+                ||  txtTratamiento.getText().isEmpty();
     }
     /**
      * Método que configura el date picker para que tenga un rango de selección
@@ -161,6 +163,9 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         txtPresupuesto = new javax.swing.JTextField();
         lblPresupuesto1 = new javax.swing.JLabel();
         txtKM = new javax.swing.JTextField();
+        lblTratamiento = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtTratamiento = new javax.swing.JTextArea();
         lblInformacionSolicitud = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -276,7 +281,7 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 btnSolicitarActionPerformed(evt);
             }
         });
-        jplFondoGeneral.add(btnSolicitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 70, 30));
+        jplFondoGeneral.add(btnSolicitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 70, 30));
 
         btnVolver.setText("Volver");
         btnVolver.setBorder(null);
@@ -286,7 +291,7 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
-        jplFondoGeneral.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 80, 30));
+        jplFondoGeneral.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 80, 30));
 
         jplFondo2.setBackground(new java.awt.Color(175, 244, 198));
 
@@ -324,8 +329,20 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
             }
         });
 
-        lblPresupuesto1.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         lblPresupuesto1.setText("Presupuesto base");
+        lblPresupuesto1.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
+
+        lblTratamiento.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
+        lblTratamiento.setText("Tratamiento");
+
+        txtTratamiento.setColumns(20);
+        txtTratamiento.setRows(5);
+        txtTratamiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTratamientoKeyTyped(evt);
+            }
+        });
+        jScrollPane1.setViewportView(txtTratamiento);
 
         javax.swing.GroupLayout jplFondo2Layout = new javax.swing.GroupLayout(jplFondo2);
         jplFondo2.setLayout(jplFondo2Layout);
@@ -335,9 +352,9 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jplFondo2Layout.createSequentialGroup()
-                        .addComponent(lblFechaTraslado)
-                        .addGap(49, 49, 49)
-                        .addComponent(dpFechaTraslado, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
+                        .addComponent(lblTratamiento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1))
                     .addGroup(jplFondo2Layout.createSequentialGroup()
                         .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDestino)
@@ -346,9 +363,13 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPresupuesto)
-                            .addComponent(cbxDestinos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtKM))))
-                .addGap(18, 18, 18))
+                            .addComponent(txtKM)
+                            .addComponent(cbxDestinos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jplFondo2Layout.createSequentialGroup()
+                        .addComponent(lblFechaTraslado)
+                        .addGap(49, 49, 49)
+                        .addComponent(dpFechaTraslado, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jplFondo2Layout.setVerticalGroup(
             jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,10 +390,17 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
                 .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPresupuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPresupuesto1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jplFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jplFondo2Layout.createSequentialGroup()
+                        .addGap(0, 21, Short.MAX_VALUE)
+                        .addComponent(lblTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)))
+                .addContainerGap())
         );
 
-        jplFondoGeneral.add(jplFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 420, 140));
+        jplFondoGeneral.add(jplFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 420, 220));
 
         lblInformacionSolicitud.setText("Información de solicitud");
         lblInformacionSolicitud.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
@@ -386,7 +414,9 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jplFondoGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jplFondoGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -444,6 +474,13 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxDestinosActionPerformed
 
+    private void txtTratamientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTratamientoKeyTyped
+        char c = evt.getKeyChar();
+        if (txtTratamiento.getText().length() >= 100 || !Character.isLetterOrDigit(c) && c != ',' && c != '.' && !Character.isWhitespace(c)) {
+            evt.consume(); // Ignorar el evento si se alcanzó el límite de 100 caracteres o el carácter no es válido
+        }
+    }//GEN-LAST:event_txtTratamientoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSolicitar;
@@ -452,6 +489,7 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
     private javax.swing.JComboBox<Residuo> cbxResiduos;
     private com.github.lgooddatepicker.components.DatePicker dpFechaTraslado;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jplFondo1;
     private javax.swing.JPanel jplFondo2;
     private javax.swing.JPanel jplFondoGeneral;
@@ -463,10 +501,12 @@ public class FrmRegistrarTraslado extends javax.swing.JFrame {
     private javax.swing.JLabel lblKM;
     private javax.swing.JLabel lblPresupuesto1;
     private javax.swing.JLabel lblResiduoTrasladar;
+    private javax.swing.JLabel lblTratamiento;
     private javax.swing.JLabel lblUnidadDeMedida;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtKM;
     private javax.swing.JTextField txtPresupuesto;
+    private javax.swing.JTextArea txtTratamiento;
     private javax.swing.JTextField txtUnidadMedida;
     // End of variables declaration//GEN-END:variables
 }

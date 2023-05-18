@@ -30,7 +30,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jplFondoGeneral" alignment="0" pref="440" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jplFondoGeneral" min="-2" pref="500" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -232,7 +235,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="360" y="390" width="70" height="30"/>
+              <AbsoluteConstraints x="360" y="460" width="70" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -251,7 +254,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="390" width="80" height="30"/>
+              <AbsoluteConstraints x="10" y="460" width="80" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -263,7 +266,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="230" width="420" height="140"/>
+              <AbsoluteConstraints x="10" y="230" width="420" height="220"/>
             </Constraint>
           </Constraints>
 
@@ -274,9 +277,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblFechaTraslado" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="dpFechaTraslado" pref="193" max="32767" attributes="0"/>
+                              <Component id="lblTratamiento" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -287,12 +290,17 @@
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtPresupuesto" max="32767" attributes="0"/>
-                                  <Component id="cbxDestinos" max="32767" attributes="0"/>
                                   <Component id="txtKM" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cbxDestinos" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblFechaTraslado" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="dpFechaTraslado" pref="205" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -319,7 +327,16 @@
                           <Component id="txtPresupuesto" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPresupuesto1" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
+                              <Component id="lblTratamiento" min="-2" pref="23" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -388,6 +405,32 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtKM">
             </Component>
+            <Component class="javax.swing.JLabel" name="lblTratamiento">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Myanmar Text" size="18" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Tratamiento"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="txtTratamiento">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTratamientoKeyTyped"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="lblInformacionSolicitud">

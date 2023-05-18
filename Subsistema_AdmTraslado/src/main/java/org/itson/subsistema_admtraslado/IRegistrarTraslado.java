@@ -1,6 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+/**
+ * Clase IRegistrarTraslado.java creada el 16/05/2023.
  */
 package org.itson.subsistema_admtraslado;
 
@@ -16,6 +15,11 @@ import org.itson.excepciones.PersistenciaException;
  * Ángel de Jesús Valenzuela García
  */
 public interface IRegistrarTraslado {
-    
+    /**
+     * Método para registrar una Orden de traslado.
+     * @param traslado Orden de traslado a registrar.
+     * @return Valor booleano, true si se registro, false en caso contrario.
+     * @throws PersistenciaException Excepción a lanzar en caso de haber un error.
+     */
     public boolean registrarTraslado(OrdenTraslado traslado) throws PersistenciaException;
 }

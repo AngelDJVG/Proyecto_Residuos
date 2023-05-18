@@ -1,6 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * Clase FachadaAdmTraslado.java creada el 15/05/2023.
  */
 package org.itson.subsistema_admtraslado;
 
@@ -24,13 +23,22 @@ public class FachadaAdmTraslado implements IRegistrarTraslado{
     private IPersistencia persistencia;
     private IMensajeria mensajeria;
     private ValidarTraslado validador;
-    
+    /**
+     * Método consturctor que inicializa los atributos al valor de sus parámetros.
+     * @param credencialCorreo Credencial del correo.
+     * @param credencialPassword Credencial del password.
+     */
     public FachadaAdmTraslado(String credencialCorreo, String credencialPassword) {
         persistencia = new FachadaPersistencia();
         mensajeria = new FachadaCorreo(credencialCorreo, credencialPassword);
         validador = new ValidarTraslado();
     }
-
+    /**
+     * Método para registrar una Orden de traslado.
+     * @param traslado Orden de traslado a registrar.
+     * @return Valor booleano, true si se registro, false en caso contrario.
+     * @throws PersistenciaException Excepción a lanzar en caso de haber un error.
+     */
     @Override
     public boolean registrarTraslado(OrdenTraslado traslado) throws PersistenciaException{
         boolean validado;

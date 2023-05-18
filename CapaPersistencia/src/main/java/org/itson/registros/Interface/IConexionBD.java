@@ -13,5 +13,9 @@ import com.mongodb.client.MongoDatabase;
  * Ángel de Jesús Valenzuela García
  */
 public interface IConexionBD {
+    /**
+     * Método que regresa la base de datos de la conexión.
+     * @return Base de datos de la conexión.
+     */
     public MongoDatabase getBaseDatos();
 }

@@ -1,6 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * Clase ControlDestino.java creada el 17/05/2023.
  */
 package org.itson.capanegocio;
 

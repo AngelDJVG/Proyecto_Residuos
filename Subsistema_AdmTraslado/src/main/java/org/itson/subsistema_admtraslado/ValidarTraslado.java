@@ -1,6 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * Clase ValidarTraslado.java creada el 15/05/2023.
  */
 package org.itson.subsistema_admtraslado;
 
@@ -20,11 +19,18 @@ import org.itson.registros.Interface.IPersistencia;
 public class ValidarTraslado {
 
     private IPersistencia persistencia;
-    
+    /**
+     * Método constructor por defecto que inicializa la persistencia.
+     */
     public ValidarTraslado() {
         persistencia = new FachadaPersistencia();
     }
-    
+    /**
+     * Método para validar una orden de traslado. 
+     * @param traslado Orden de traslado a validar.
+     * @return Valor booleano, true si se registro, false en caso contrario.
+     * @throws PersistenciaException Excepción a lanzar en caso de haber un error.
+     */
     public boolean validarTraslado(OrdenTraslado traslado) throws PersistenciaException{
         if(persistencia.consultarOrdenesTrasladoProductor(traslado.getIdProductor()).size() < 5){
             if(persistencia.consultarOrdenTrasladoResiduo(traslado).isEmpty()){

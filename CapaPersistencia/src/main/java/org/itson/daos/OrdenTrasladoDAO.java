@@ -6,6 +6,7 @@ package org.itson.daos;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.*;
+import com.mongodb.client.result.DeleteResult;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.temporal.TemporalField;
@@ -28,7 +29,10 @@ public class OrdenTrasladoDAO extends DAOGeneral<OrdenTraslado> {
 
     private final MongoDatabase BASE_DATOS;
     private final String NOMBRE_COLECCION = "ordenes_traslados";
-
+    /**
+     * Método constructor por defecto que inicializa el atributo al valor del parámetro enviado.
+     * @param conexionBD Conexión con la base de datos.
+     */
     public OrdenTrasladoDAO(IConexionBD conexionBD) {
         BASE_DATOS = conexionBD.getBaseDatos();
     }
@@ -59,29 +63,43 @@ public class OrdenTrasladoDAO extends DAOGeneral<OrdenTraslado> {
     /**
      * Método que agrega una orden de traslado.
      *
-     * @param entidad Orden de traslado.
+     * @param ordenTraslado Orden de traslado.
      * @return orden de traslado.
      */
     @Override
-    public OrdenTraslado agregar(OrdenTraslado entidad) {
+    public OrdenTraslado agregar(OrdenTraslado ordenTraslado) {
         MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
-        coleccion.insertOne(entidad);
-        return entidad;
+        coleccion.insertOne(ordenTraslado);
+        return ordenTraslado;
     }
 
     /**
      * Método que actualiza una orden de traslado.
      *
-     * @param entidad orden de traslado.
+     * @param ordenTraslado orden de traslado.
      * @return orden de traslado.
      */
     @Override
-    public OrdenTraslado actualizar(OrdenTraslado entidad) {
+    public OrdenTraslado actualizar(OrdenTraslado ordenTraslado) {
         MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
-        coleccion.replaceOne(eq("_id", entidad.getId()), entidad);
-        return entidad;
+        coleccion.replaceOne(eq("_id", ordenTraslado.getId()), ordenTraslado);
+        return ordenTraslado;
     }
-
+   /**
+     * Método que elimina una orden de traslado.
+     * @param idTransportista id de orden de traslado a eliminar.
+     * @return Valor booleano, true si se eliminó, false en caso contrario.
+     */
+    public Boolean eliminarOrdenTraslado(ObjectId idTransportista){
+        MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
+        DeleteResult resultado = coleccion.deleteOne(eq("_id", idTransportista));
+        return resultado.getDeletedCount() > 0;
+    }
+    /**
+     * Método que consulta las órdenes de traslado de un productor.
+     * @param idProductor Id del productor.
+     * @return Lista de órdenes de traslado.
+     */
     public List<OrdenTraslado> consultarOrdenesTrasladoProductor(ObjectId idProductor) {
         MongoCollection<OrdenTraslado> coleccion = BASE_DATOS.getCollection(NOMBRE_COLECCION, OrdenTraslado.class);
         
